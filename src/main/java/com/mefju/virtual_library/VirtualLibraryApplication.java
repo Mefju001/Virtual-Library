@@ -1,4 +1,4 @@
-package com.mefju.virtuallibrary;
+package com.mefju.virtual_library;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
