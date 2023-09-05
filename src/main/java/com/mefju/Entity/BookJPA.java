@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "book")
-public class Book_entity {
+public class BookJPA {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name= "ID")
@@ -22,7 +22,7 @@ public class Book_entity {
     @Column(name = "Author")
     private String Author;
 
-    public Book_entity() {
+    public BookJPA() {
     }
 
     public int getId() {

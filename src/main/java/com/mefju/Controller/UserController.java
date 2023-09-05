@@ -1,6 +1,6 @@
 package com.mefju.Controller;
 
-import com.mefju.Entity.Book_entity;
+import com.mefju.Entity.BookJPA;
 import com.mefju.Repository.BookRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +18,7 @@ public class UserController {
     @GetMapping("/Show")
     public String ListBook(Model themodel)
     {
-        List<Book_entity> books = bookRepository.findAll();
+        List<BookJPA> books = bookRepository.findAll();
         themodel.addAttribute("Book",books);
         return ""; //TODO nazwa html
     }

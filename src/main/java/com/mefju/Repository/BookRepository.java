@@ -1,7 +1,7 @@
 package com.mefju.Repository;
 
-import com.mefju.Entity.Book_entity;
+import com.mefju.Entity.BookJPA;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface BookRepository extends JpaRepository<Book_entity,Integer> {
+public interface BookRepository extends JpaRepository<BookJPA,Integer> {
 }
