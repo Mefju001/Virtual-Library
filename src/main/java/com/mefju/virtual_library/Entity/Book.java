@@ -1,10 +1,10 @@
-package com.mefju.Entity;
+package com.mefju.virtual_library.Entity;
 
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "book")
-public class BookJPA {
+public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name= "ID")
@@ -14,15 +14,15 @@ public class BookJPA {
     @Column(name = "Type")
     private String Type;
     @Column(name = "Price")
-    private String Price;
+    private double Price;
     @Column(name = "Publisher")
     private String Publisher;
     @Column(name = "Rating")
-    private String Rating;
+    private int Rating;
     @Column(name = "Author")
     private String Author;
 
-    public BookJPA() {
+    public Book() {
     }
 
     public int getId() {
@@ -49,11 +49,11 @@ public class BookJPA {
         Type = type;
     }
 
-    public String getPrice() {
+    public double getPrice() {
         return Price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(double price) {
         Price = price;
     }
 
@@ -65,11 +65,11 @@ public class BookJPA {
         Publisher = publisher;
     }
 
-    public String getRating() {
+    public int getRating() {
         return Rating;
     }
 
-    public void setRating(String rating) {
+    public void setRating(int rating) {
         Rating = rating;
     }
 

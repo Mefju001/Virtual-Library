@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Library</title>
+    <link rel="stylesheet" href="/main.css"> <!-- Dołącz arkusz stylów CSS -->
+</head>
+<body>
+    <div class="menu1">
+        <nav class="navbar">
+            <div class="navbar-buttons">
+                <a class="nav-button" th:href ="@{/ShowFormForAdd}">Dodaj ksiazke</a>
+                <a class="nav-button">Katalog</a>
+                <a class="nav-button">Koszyk</a>
+                <a class="nav-button">Kontakt</a>
+            </div>
+            <h1>Virtual Library</h1>
+        </nav>
+        <div class ="menu" id="container">
+            <nav class="sidebar">
+                <ul>
+                    <li><a href="#">FILTRY</a></li>
+                    <li><a href="#">Fantasy</a></li>
+                    <li><a href="#">Science Fiction</a></li>
+                    <li><a href="#">Kryminał</a></li>
+                    <li><a href="#">Romans</a></li>
+                </ul>
+            </nav>
+            <div class ="ksiazki">
+                <main class="content">
+                    <!-- Przykład książki -->
+                    <nav class="book" th:each="book:${Book}">
+                        <img src="/img/WC.jpg" width="25%" height="25%" alt="Okładka książki 1">
+                        <h2>Tytuł: <td th:text="${book.getName()}"></td></h2>
+                        <p>Rodzaj: <td th:text="${book.getType()}"></td></p>
+                        <p>cena: <td th:text="${book.getPrice()}"></td></p>
+                        <p>Wydawnictwo: <td th:text="${book.getPublisher()}"></td></p>
+                        <p>Ocena: <td th:text="${book.getRating()}"></td></p>
+                        <p>Autor: <td th:text="${book.getAuthor()}"></td></p>
+                        <td>
+                            <a th:href="@{/ShowFormForUpdate(id=${book.getId()})}">
+                                <br>Edytuj</a>
+                        </td>
+                        <td>
+                            <a th:href="@{/Delete(id=${book.getId()})}">
+                                Usun
+                            </a>
+                        </td>
+                    </nav>
+                    <!-- Dodaj więcej książek według potrzeb -->
+                </main>
+            </div>
+            <nav class="side">
+            </nav>
+        </div>
+            <div class="footer" id="kontakt">
+                <div class="kontakt">
+                    <h3>Kontakt</h3>
+                    <p>Email: MefjuLibrary@gmail.com</p>
+                    <p>Telefon: +48 123 456 789</p>
+                    <p>Adres: Generała Zygmunta Waltera-Jankego 222, Katowice</p>
+                </div>
+        </div>
+    </div>
+</body>
+</html>

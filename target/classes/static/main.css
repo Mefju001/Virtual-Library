@@ -1,0 +1,122 @@
+body{
+    padding: 0;
+    margin: 0;
+    height: 1080px;
+    background-color: white;
+}
+.dodaj{
+    display: none;
+}
+.navbar{
+    width: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    color: black;
+    align-items: center;
+
+}
+.nav-button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.nav-button:last-child {
+    margin-right: 0;
+}
+
+.nav-button:hover {
+    background-color: #555;
+}
+.menu{
+    display: flex;
+    justify-content: space-between;
+    height: 80vh;
+    background-color: white;
+}
+.sidebar {
+    display: flex;
+    background-color: grey;
+    width: 220px;
+    height: 80vh;
+    margin-bottom: 100vh;
+    justify-content: center;
+}
+.ksiazki{
+    height: 80vh;
+}
+.side {
+    height: 80vh;
+    display: flex;
+    background-color: rgb(128, 128, 128);
+    width: 220px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin-bottom: 10px;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+}
+
+
+.sidebar.show {
+    left: 0;
+}
+
+.content {
+    display: flex;
+    margin-left: 220px;
+    padding: 60px;
+    margin-right: 220px;
+}
+
+.book {
+    margin-right: 15px;
+    border: 10px solid #ddd;
+    padding: 16px;
+    margin-bottom: 20px;
+    background-color: #d2caca;
+}
+
+.book img {
+    max-width: 100%;
+    height: auto;
+}
+.footer{
+    height: 11vh;
+    background-color: white;
+    padding: 20px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+}
+
+.kontakt{
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.kontakt a, .kontakt p{
+    color: black;
+    margin: 0;
+    line-height: 1.5;
+    font-size: 1.1rem;
+    word-break: break-word;
+
+}

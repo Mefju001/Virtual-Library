@@ -1,4 +1,4 @@
-package com.mefju.Controller;
+package com.mefju.virtual_library.Controller;
 
 import org.springframework.stereotype.Controller;
 
