@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/formularz.css">
+</head>
+<body>
+<div id="dodaj">
+    <form id="formularz"  action="#" th:action="@{/save}"
+          th:object="${Book}" method="post">
+        <h2>Wypełnij formularz</h2>
+        <input type="hidden" th:field="*{id}"/>
+        <div class="wiersz">
+            <label for="name">Nazwa</label>
+            <input name="name" th:field="*{name}" type="text" placeholder="Wprowadz nazwe ksiazki" id="name" required minlength="1" maxlength="100">
+        </div>
+        <div class="wiersz">
+            <label for="Rodzaj">Rodzaj</label>
+            <input name="Rodzaj" th:field="*{type}" type="text" placeholder="Rodzaj" id="Rodzaj" required minlength="1" maxlength="100">
+        </div>
+        <div class="wiersz">
+            <label for="Price">Cena</label>
+            <input name="Price" th:field="*{price}" type="number" placeholder="Cena" id="Price" min="1" max="300" step="0.01" required>
+        </div>
+        <div class="wiersz">
+            <label for="Publisher">Wydawnictwo</label>
+            <input type="text" th:field="*{publisher}" placeholder="Wydawnictwo" id="Publisher" required minlength="1" maxlength="100">
+        </div>
+        <div class="wiersz">
+            <label for="Rating">Opinia</label>
+            <input name="Rating" th:field="*{rating}" type="number" placeholder="Opinia" id="Rating"  min="1" max="10" step="1" required>
+        </div>
+        <div class="wiersz">
+            <label for="Author">Autor</label>
+            <input name="Author" th:field="*{author}" type="text" placeholder="Author" id="Author" required minlength="1" maxlength="100">
+        </div>
+        <button id="confirm-but"> Potwierdz</button>
+    </form>
+</div>
+</body>
+</html>

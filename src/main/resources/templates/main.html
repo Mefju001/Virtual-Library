@@ -10,14 +10,14 @@
     <div class="menu1">
         <nav class="navbar">
             <div class="navbar-buttons">
-                <button class="nav-button">Strona główna</button>
-                <button class="nav-button">Katalog</button>
-                <button class="nav-button">Koszyk</button>
-                <button class="nav-button">Kontakt</button>
+                <a class="nav-button" th:href ="@{/ShowFormForAdd}">Dodaj ksiazke</a>
+                <a class="nav-button">Katalog</a>
+                <a class="nav-button">Koszyk</a>
+                <a class="nav-button">Kontakt</a>
             </div>
             <h1>Virtual Library</h1>
         </nav>
-        <div class ="menu">
+        <div class ="menu" id="container">
             <nav class="sidebar">
                 <ul>
                     <li><a href="#">FILTRY</a></li>
@@ -31,12 +31,22 @@
                 <main class="content">
                     <!-- Przykład książki -->
                     <nav class="book" th:each="book:${Book}">
-                        <img src="book1.jpg" alt="Okładka książki 1">
-                        <h2>Tytuł:<td th:text="${book.Name}"></td></h2>
-                        <p>Rodzaj:<td th:text="${book.Type}"></td></p>
-                        <p>Wydawnictwo:<td th:text="${book.Publisher}"></td></p>
-                        <p>Ocena:<td th:text="${book.Rating}"></td></p>
-                        <p>Autor:<td th:text="${book.Author}"></td></p>
+                        <img src="/img/WC.jpg" width="25%" height="25%" alt="Okładka książki 1">
+                        <h2>Tytuł: <td th:text="${book.getName()}"></td></h2>
+                        <p>Rodzaj: <td th:text="${book.getType()}"></td></p>
+                        <p>cena: <td th:text="${book.getPrice()}"></td></p>
+                        <p>Wydawnictwo: <td th:text="${book.getPublisher()}"></td></p>
+                        <p>Ocena: <td th:text="${book.getRating()}"></td></p>
+                        <p>Autor: <td th:text="${book.getAuthor()}"></td></p>
+                        <td>
+                            <a th:href="@{/ShowFormForUpdate(id=${book.getId()})}">
+                                <br>Edytuj</a>
+                        </td>
+                        <td>
+                            <a th:href="@{/Delete(id=${book.getId()})}">
+                                Usun
+                            </a>
+                        </td>
                     </nav>
                     <!-- Dodaj więcej książek według potrzeb -->
                 </main>
@@ -47,7 +57,7 @@
             <div class="footer" id="kontakt">
                 <div class="kontakt">
                     <h3>Kontakt</h3>
-                    <p>Email: lightweightbaby@gmail.com</p>
+                    <p>Email: MefjuLibrary@gmail.com</p>
                     <p>Telefon: +48 123 456 789</p>
                     <p>Adres: Generała Zygmunta Waltera-Jankego 222, Katowice</p>
                 </div>

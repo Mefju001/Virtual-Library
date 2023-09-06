@@ -1,6 +1,11 @@
 body{
+    padding: 0;
+    margin: 0;
     height: 1080px;
     background-color: white;
+}
+.dodaj{
+    display: none;
 }
 .navbar{
     width: 100%;
