@@ -1,10 +1,10 @@
-package com.mefju.Entity;
+package com.mefju.virtual_library.Entity;
 
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "book")
-public class BookJPA {
+public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name= "ID")
@@ -22,7 +22,7 @@ public class BookJPA {
     @Column(name = "Author")
     private String Author;
 
-    public BookJPA() {
+    public Book() {
     }
 
     public int getId() {
