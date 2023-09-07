@@ -24,6 +24,9 @@ public class UserController {
     {
         List<Book> books = bookRepository.findAll();
         themodel.addAttribute("Book",books);
+
+        Book book = new Book();
+        themodel.addAttribute("Book2",book);
         return "main";
     }
     @GetMapping("/ShowFormForAdd")
