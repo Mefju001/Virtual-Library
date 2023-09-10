@@ -3,7 +3,7 @@ package com.mefju.virtual_library.Entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "book")
+@Table(name = "book", schema = "public")
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +21,10 @@ public class Book {
     private int Rating;
     @Column(name = "Author")
     private String Author;
-
+    @Column(name = "Stock")
+    private int Stock;
+    @Column(name = "Popularity")
+    private int Popularity;
     public Book() {
     }
 
@@ -79,5 +82,21 @@ public class Book {
 
     public void setAuthor(String author) {
         Author = author;
+    }
+
+    public int getStock() {
+        return Stock;
+    }
+
+    public void setStock(int stock) {
+        Stock = stock;
+    }
+
+    public int getPopularity() {
+        return Popularity;
+    }
+
+    public void setPopularity(int popularity) {
+        Popularity = popularity;
     }
 }

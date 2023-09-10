@@ -4,47 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Virtual Library</title>
-    <link rel="stylesheet" href="/main.css"> <!-- Dołącz arkusz stylów CSS -->
+    <link rel="stylesheet" href="/main.css">
 </head>
 <body>
-<div class="dodaj" id="dodaj">
-    <form id="formularz"  action="#" th:action="@{/save}"
-          th:object="${Book2}" method="post">
-        <h2>Wypełnij formularz</h2>
-        <input type="hidden" th:field="*{id}"/>
-        <input type="file" name="nazwa" size="k">
-        <div class="wiersz">
-            <label for="name">Nazwa</label>
-            <input name="name" th:field="*{name}" type="text" placeholder="Wprowadz nazwe ksiazki" id="name" required minlength="1" maxlength="100">
-        </div>
-        <div class="wiersz">
-            <label for="Rodzaj">Rodzaj</label>
-            <input name="Rodzaj" th:field="*{type}" type="text" placeholder="Rodzaj" id="Rodzaj" required minlength="1" maxlength="100">
-        </div>
-        <div class="wiersz">
-            <label for="Price">Cena</label>
-            <input name="Price" th:field="*{price}" type="number" placeholder="Cena" id="Price" min="1" max="300" step="0.01" required>
-        </div>
-        <div class="wiersz">
-            <label for="Publisher">Wydawnictwo</label>
-            <input type="text" th:field="*{publisher}" placeholder="Wydawnictwo" id="Publisher" required minlength="1" maxlength="100">
-        </div>
-        <div class="wiersz">
-            <label for="Rating">Opinia</label>
-            <input name="Rating" th:field="*{rating}" type="number" placeholder="Opinia" id="Rating"  min="1" max="10" step="1" required>
-        </div>
-        <div class="wiersz">
-            <label for="Author">Autor</label>
-            <input name="Author" th:field="*{author}" type="text" placeholder="Author" id="Author" required minlength="1" maxlength="100">
-        </div>
-        <button id="confirm-but"> Potwierdz</button>
-    </form>
-</div>
     <div class="menu1" id="menu1">
         <nav class="navbar">
             <div class="navbar-buttons">
-                <a class="nav-button" id="start" >Dodaj ksiazke</a>
-                <a class="nav-button">Katalog</a>
+                <a class="nav-button" th:href="@{/ShowFormForAdd}" >Dodaj ksiazke</a>
+                <a class="nav-button" th:href="@{/FindbyName}"> Katalog</a>
                 <a class="nav-button">Koszyk</a>
                 <a class="nav-button">Kontakt</a>
             </div>
@@ -54,22 +21,31 @@
             <nav class="sidebar">
                 <ul>
                     <li><a href="#">FILTRY</a></li>
-                    <li><a href="#">Fantasy</a></li>
-                    <li><a href="#">Science Fiction</a></li>
-                    <li><a href="#">Kryminał</a></li>
-                    <li><a href="#">Romans</a></li>
+                    <li><a> <form th:action="@{/szukanie}" method="post">
+                            Wpisz szukana nazwe
+                            <input type="text" name="name"></form>
+                    </a></li>
+                    <li><a th:href="@{/Sort}">Sortowanie rosnąco</a></li>
+                    <li><a th:href="@{/Sortmal}">Sortowanie malejąco </a></li>
+                    <li><a th:href="@{/popular}">Popularnosc</a></li>
+                    <li class="dropdown">
+                        <a href="#">Kategorie</a>
+                        <div class="dropdown-content" th:each="book2:${Book}" >
+                            <a th:text="${book2.getType()}"></a>
+                        </div>
+                    </li>
                 </ul>
             </nav>
             <div class ="ksiazki">
                 <main class="content">
                         <nav class="book" th:each="book:${Book}">
-                            <img src="/img/WC.jpg" width="25%" height="25%" alt="Okładka książki 1">
                             <h2>Tytuł: <td th:text="${book.getName()}"></td></h2>
                             <p>Rodzaj: <td th:text="${book.getType()}"></td></p>
                             <p>cena: <td th:text="${book.getPrice()}"></td></p>
                             <p>Wydawnictwo: <td th:text="${book.getPublisher()}"></td></p>
                             <p>Ocena: <td th:text="${book.getRating()}"></td></p>
                             <p>Autor: <td th:text="${book.getAuthor()}"></td></p>
+                            <p>Stan: <td th:text="${book.getStock()}"></td></p>
                             <td>
                                 <a id="start1" th:href="@{/ShowFormForUpdate(id=${book.getId()})}">
                                     <br>Edytuj</a>
