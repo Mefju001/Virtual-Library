@@ -10,6 +10,7 @@
               th:object="${Book}" method="post">
             <h2>Wypełnij formularz</h2>
             <input type="hidden" th:field="*{id}"/>
+            <input type="file" name="file" accept="image/*">
             <div class="wiersz">
                 <label for="name">Nazwa</label>
                 <input name="name" th:field="*{name}" type="text" placeholder="Wprowadz nazwe ksiazki" id="name" required minlength="1" maxlength="100">

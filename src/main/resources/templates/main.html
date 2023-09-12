@@ -23,15 +23,19 @@
                     <li><a href="#">FILTRY</a></li>
                     <li><a> <form th:action="@{/szukanie}" method="post">
                             Wpisz szukana nazwe
-                            <input type="text" name="name"></form>
+                        <label>
+                            <input type="text" name="name">
+                        </label></form>
                     </a></li>
                     <li><a th:href="@{/Sort}">Sortowanie rosnąco</a></li>
                     <li><a th:href="@{/Sortmal}">Sortowanie malejąco </a></li>
                     <li><a th:href="@{/popular}">Popularnosc</a></li>
                     <li class="dropdown">
                         <a href="#">Kategorie</a>
-                        <div class="dropdown-content" th:each="book2:${Book}" >
-                            <a th:text="${book2.getType()}"></a>
+                        <div class="dropdown-content">
+                            <ul>
+                                <li><a th:each="category : ${categories}" th:text="${category}"></a></li>
+                            </ul>
                         </div>
                     </li>
                 </ul>
@@ -39,6 +43,7 @@
             <div class ="ksiazki">
                 <main class="content">
                         <nav class="book" th:each="book:${Book}">
+                            <img th:src="${book.getPicturePath()}" alt="Opis obrazka">
                             <h2>Tytuł: <td th:text="${book.getName()}"></td></h2>
                             <p>Rodzaj: <td th:text="${book.getType()}"></td></p>
                             <p>cena: <td th:text="${book.getPrice()}"></td></p>
