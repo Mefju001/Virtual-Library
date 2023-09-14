@@ -7,74 +7,86 @@
     <link rel="stylesheet" href="/main.css">
 </head>
 <body>
-    <div class="menu1" id="menu1">
-        <nav class="navbar">
-            <div class="navbar-buttons">
-                <a class="nav-button" th:href="@{/ShowFormForAdd}" >Dodaj ksiazke</a>
-                <a class="nav-button" th:href="@{/FindbyName}"> Katalog</a>
-                <a class="nav-button">Koszyk</a>
-                <a class="nav-button">Kontakt</a>
-            </div>
-            <h1>Virtual Library</h1>
-        </nav>
-        <div class ="menu" id="container">
-            <nav class="sidebar">
-                <ul>
-                    <li><a href="#">FILTRY</a></li>
-                    <li><a> <form th:action="@{/szukanie}" method="post">
-                            Wpisz szukana nazwe
-                        <label>
-                            <input type="text" name="name">
-                        </label></form>
-                    </a></li>
-                    <li><a th:href="@{/Sort}">Sortowanie rosnąco</a></li>
-                    <li><a th:href="@{/Sortmal}">Sortowanie malejąco </a></li>
-                    <li><a th:href="@{/popular}">Popularnosc</a></li>
-                    <li class="dropdown">
-                        <a href="#">Kategorie</a>
-                        <div class="dropdown-content">
-                            <ul>
-                                <li><a th:each="category : ${categories}" th:text="${category}"></a></li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
-            <div class ="ksiazki">
-                <main class="content">
-                        <nav class="book" th:each="book:${Book}">
-                            <img th:src="${book.getPicturePath()}" alt="Opis obrazka">
-                            <h2>Tytuł: <td th:text="${book.getName()}"></td></h2>
-                            <p>Rodzaj: <td th:text="${book.getType()}"></td></p>
-                            <p>cena: <td th:text="${book.getPrice()}"></td></p>
-                            <p>Wydawnictwo: <td th:text="${book.getPublisher()}"></td></p>
-                            <p>Ocena: <td th:text="${book.getRating()}"></td></p>
-                            <p>Autor: <td th:text="${book.getAuthor()}"></td></p>
-                            <p>Stan: <td th:text="${book.getStock()}"></td></p>
-                            <td>
-                                <a id="start1" th:href="@{/ShowFormForUpdate(id=${book.getId()})}">
-                                    <br>Edytuj</a>
-                            </td>
-                            <td>
-                                <a th:href="@{/Delete(id=${book.getId()})}">
-                                    Usun
-                                </a>
-                            </td>
-                        </nav>
-                </main>
-            </div>
-            <nav class="side">
-            </nav>
+<div class="container">
+    <nav class="navbar">
+        <div class="navbar-buttons">
+            <a class="nav-button" th:href="@{/ShowFormForAdd}" >Dodaj ksiazke</a>
+            <a class="nav-button" th:href="@{/Prom}"> Promocje</a>
+            <a class="nav-button">Koszyk</a>
+            <a class="nav-button">Kontakt</a>
         </div>
-            <div class="footer" id="kontakt">
-                <div class="kontakt">
-                    <h3>Kontakt</h3>
-                    <p>Email: MefjuLibrary@gmail.com</p>
-                    <p>Telefon: +48 123 456 789</p>
-                    <p>Adres: Generała Zygmunta Waltera-Jankego 222, Katowice</p>
+        <h1>Virtual Library</h1>
+    </nav>
+    <nav class="sidebar">
+        <ul>
+            <li><a href="#">FILTRY</a></li>
+            <li>
+                <form th:action="@{/szukanie}" method="post">
+                    Wpisz szukaną nazwę
+                    <label>
+                        <input type="text" name="name">
+                    </label>
+                </form>
+            </li>
+            <li class="dropdown">
+                <a href="#">Kategorie</a>
+                <div class="dropdown-content">
+                    <ul>
+                        <li th:each="category : ${categories}">
+                            <form th:action="@{/szukanierodzajów}" method="post">
+                                <input type="hidden" name="type" th:value="${category}" />
+                                <button type="submit" th:text="${category}"></button>
+                            </form>
+                        </li>
+                    </ul>
                 </div>
-        </div>
+            </li>
+        </ul>
+    </nav>
+    <div class="ksiazki">
+        <nav class="content">
+            <div th:each="book:${Book}" class="book">
+                <img th:src="${book.getPicturePath()}" alt="Opis obrazka">
+                <h2>Tytuł: <span th:text="${book.getName()}"></span></h2>
+                <p>Rodzaj: <span th:text="${book.getType()}"></span></p>
+                <p>Cena: <span th:text="${book.getPrice()}"></span></p>
+                <p>Wydawnictwo: <span th:text="${book.getPublisher()}"></span></p>
+                <p>Ocena: <span th:text="${book.getRating()}"></span></p>
+                <p>Autor: <span th:text="${book.getAuthor()}"></span></p>
+                <p>Stan: <span th:text="${book.getStock()}"></span></p>
+                <div>
+                    <a id="start1" th:href="@{/ShowFormForUpdate(id=${book.getId()})}">
+                        Edytuj
+                    </a>
+                </div>
+                <div>
+                    <a th:href="@{/Delete(id=${book.getId()})}">
+                        Usun
+                    </a>
+                </div>
+            </div>
+        </nav>
     </div>
-    <script src="/JS/script.js"></script>
+    <nav class="side">
+        <li class="dropdown">
+            <a href="#">Sortowanie</a>
+            <div class="dropdown-content">
+                <a th:href="@{/Sort}">Sortowanie rosnąco</a>
+                <a th:href="@{/Sortmal}">Sortowanie malejąco</a>
+                <a th:href="@{/popular}">Popularność</a>
+                <a th:href="@{/Menu}">Anuluj sortowanie</a>
+            </div>
+        </li>
+    </nav>
+    <footer class="footer" id="kontakt">
+        <div class="kontakt">
+            <h3>Kontakt</h3>
+            <p>Email: MefjuLibrary@gmail.com</p>
+            <p>Telefon: +48 123 456 789</p>
+            <p>Adres: Generała Zygmunta Waltera-Jankego 222, Katowice</p>
+        </div>
+    </footer>
+</div>
 </body>
 </html>
+

@@ -4,17 +4,9 @@ import com.mefju.virtual_library.Entity.Book;
 import com.mefju.virtual_library.Repository.BookRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,6 +24,7 @@ public class AdminController {
     {
         List<Book> books = bookRepository.findAll();
         themodel.addAttribute("Book",books);
+
         List<String>categories =bookRepository.Typeall();
         themodel.addAttribute("categories",categories);
         return "main";
@@ -68,6 +61,14 @@ public class AdminController {
     @PostMapping("/szukanie")
     public String szukanie(@RequestParam("name")String name, Model themodel) {
         List<Book> books=bookRepository.findBooksByNameLike(name);
+        themodel.addAttribute("Book",books);
+        List<String>categories =bookRepository.Typeall();
+        themodel.addAttribute("categories",categories);
+        return "main";
+    }
+    @PostMapping("/szukanierodzajów")
+    public String szukanietype(@RequestParam("type")String type, Model themodel) {
+        List<Book> books=bookRepository.findBooksByTypeLike(type);
         themodel.addAttribute("Book",books);
         List<String>categories =bookRepository.Typeall();
         themodel.addAttribute("categories",categories);

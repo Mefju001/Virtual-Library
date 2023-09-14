@@ -18,4 +18,6 @@ public interface BookRepository extends JpaRepository<Book,Integer> {
     List<Book>popular();
     @Query(value = "SELECT DISTINCT type FROM book",nativeQuery = true)
     List<String>Typeall();
+    @Query(value = "SELECT * FROM book WHERE type=?",nativeQuery = true)
+    List<Book>findBooksByTypeLike(String name);
 }
