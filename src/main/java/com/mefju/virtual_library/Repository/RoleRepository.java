@@ -1,4 +1,7 @@
 package com.mefju.virtual_library.Repository;
 
-public interface RoleRepository {
+import com.mefju.virtual_library.Entity.Role;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface RoleRepository extends JpaRepository<Role, String> {
 }

@@ -11,23 +11,38 @@
     <nav class="navbar">
         <div class="navbar-buttons">
             <a class="nav-button" th:href="@{/ShowFormForAdd}" >Dodaj ksiazke</a>
-            <a class="nav-button" th:href="@{/Prom}"> Promocje</a>
-            <a class="nav-button">Koszyk</a>
-            <a class="nav-button">Kontakt</a>
+            <a class="nav-button" th:action="@{/prom}"> Promocje</a>
+            <a class="nav-button" th:href="@{/Library}">Biblioteki</a>
+            <a class="nav-button" onclick="document.getElementById('logoutForm').submit();">Wyloguj
+            <form id="logoutForm" th:action="@{/logout}" method="post" style="display: none;">
+                <input type="submit" value="Wyloguj">
+            </form> </a>
         </div>
         <h1>Virtual Library</h1>
     </nav>
     <nav class="sidebar">
         <ul>
             <li><a href="#">FILTRY</a></li>
+            <li><a th:href="@{/prom}">Anuluj sortowanie</a></li>
             <li>
                 <form th:action="@{/szukanie}" method="post">
                     Wpisz szukaną nazwę
                     <label>
                         <input type="text" name="name">
                     </label>
+                    <br>
+                    <input type="submit" value="Szukaj">
                 </form>
             </li>
+            <form th:action="@{/SzukaniePoCenie}" method="post">
+                <label for="min">Minimalna cena:</label>
+                <input type="text" id="min" name="min">
+                <br>
+                <label for="max">Maksymalna cena:</label>
+                <input type="text" id="max" name="max">
+                <br>
+                <input type="submit" value="Szukaj">
+            </form>
             <li class="dropdown">
                 <a href="#">Kategorie</a>
                 <div class="dropdown-content">
@@ -53,7 +68,8 @@
                 <p>Wydawnictwo: <span th:text="${book.getPublisher()}"></span></p>
                 <p>Ocena: <span th:text="${book.getRating()}"></span></p>
                 <p>Autor: <span th:text="${book.getAuthor()}"></span></p>
-                <p>Stan: <span th:text="${book.getStock()}"></span></p>
+                <p>Dostepnosc: <span th:text="${book.getDostepnosc()}"></span></p>
+                <p>Sprzedawalnosc: <span th:text="${book.getPopularnosc()}"></span></p>
                 <div>
                     <a id="start1" th:href="@{/ShowFormForUpdate(id=${book.getId()})}">
                         Edytuj

@@ -21,10 +21,10 @@ public class Book {
     private int Rating;
     @Column(name = "Author")
     private String Author;
-    @Column(name = "Stock")
-    private int Stock;
-    @Column(name = "Popularity")
-    private int Popularity;
+    @Column(name = "Popularnosc")
+    private int Popularnosc;
+    @Column(name = "Dostepnosc")
+    private String Dostepnosc;
     @Column(name = "Picturepath")
     private String PicturePath;
 
@@ -72,22 +72,22 @@ public class Book {
     public void setAuthor(String author) {
         Author = author;
     }
-    public int getStock() {
-        return Stock;
+    public int getPopularnosc() {
+        return Popularnosc;
     }
-    public void setStock(int stock) {
-        Stock = stock;
-    }
-    public int getPopularity() {
-        return Popularity;
-    }
-    public void setPopularity(int popularity) {
-        Popularity = popularity;
+    public void setPopularnosc(int popularnosc) {
+        Popularnosc = popularnosc;
     }
     public String getPicturePath() {
         return PicturePath;
     }
     public void setPicturePath(String picturePath) {
         PicturePath = picturePath;
+    }
+    public String getDostepnosc() {
+        return Dostepnosc;
+    }
+    public void setDostepnosc(String dostepnosc) {
+        Dostepnosc = dostepnosc;
     }
 }

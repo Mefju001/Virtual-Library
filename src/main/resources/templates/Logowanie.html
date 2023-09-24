@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <title>Formularz logowania</title>
+    <link rel="stylesheet" href="/Logowanie.css">
+</head>
+<body>
+<div class="container">
+    <h2>Logowanie</h2>
+    <form action="#" th:action="@{/authenticateTheUser}" method="POST">
+        <div class="form-group">
+            <label for="username">Nazwa użytkownika:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Hasło:</label>
+            <input type="Password" id="password" name="password" required>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Zaloguj">
+        </div>
+        <div  th:if="${param.error}">
+            <i class ="failed">Wpisałeś niepoprawne hasło badz login.</i>
+        </div>
+    </form>
+</div>
+</body>
+</html>

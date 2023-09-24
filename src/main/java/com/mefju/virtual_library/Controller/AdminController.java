@@ -1,6 +1,7 @@
 package com.mefju.virtual_library.Controller;
 
 import com.mefju.virtual_library.Entity.Book;
+import com.mefju.virtual_library.Repository.BibliotekiRepository;
 import com.mefju.virtual_library.Repository.BookRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +15,7 @@ import java.util.Optional;
 public class AdminController {
     private final BookRepository bookRepository;
 
-    public AdminController(BookRepository bookRepository)
+    public AdminController(BookRepository bookRepository, BibliotekiRepository bibliotekiRepository)
     {
         this.bookRepository = bookRepository;
     }
@@ -61,6 +62,22 @@ public class AdminController {
     @PostMapping("/szukanie")
     public String szukanie(@RequestParam("name")String name, Model themodel) {
         List<Book> books=bookRepository.findBooksByNameLike(name);
+        themodel.addAttribute("Book",books);
+        List<String>categories =bookRepository.Typeall();
+        themodel.addAttribute("categories",categories);
+        return "main";
+    }
+    @PostMapping("/SzukaniePoCenie")
+    public String SzukaniePoCenie(@RequestParam("min")int min, @RequestParam("max")int max, Model themodel) {
+        List<Book> books=bookRepository.findBooksByPrice(min, max);
+        themodel.addAttribute("Book",books);
+        List<String>categories =bookRepository.Typeall();
+        themodel.addAttribute("categories",categories);
+        return "main";
+    }
+    @GetMapping("/prom")
+    public String Promocja(Model themodel) {
+        List<Book> books=bookRepository.findBooksByPromocja();
         themodel.addAttribute("Book",books);
         List<String>categories =bookRepository.Typeall();
         themodel.addAttribute("categories",categories);

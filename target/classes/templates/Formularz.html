@@ -36,12 +36,16 @@
                 <input name="Author" th:field="*{author}" type="text" placeholder="Author" id="Author" required minlength="1" maxlength="100">
             </div>
             <div class="wiersz">
-                <label for="Stock">Stan</label>
-                <input name="Stock" th:field="*{stock}" type="number" placeholder="Stan" id="Stock" min="1" max="1000000" step="1" required>
+                <label>Dostepnosc
+                    <select name="Dostepnosc "th:field="*{Dostepnosc}">
+                        <option value="Tak">Tak</option>
+                        <option value="Nie">Nie</option>
+                    </select>
+                </label>
             </div>
             <div class="wiersz">
-                <label for="popularity">Stan</label>
-                <input name="popularity" th:field="*{popularity}" type="number" placeholder="Sprzedane" id="popularity" min="1" max="1000000" step="1" required>
+                <label for="Popularnosc">Sprzedawalnosc</label>
+                <input name="popularnosc" th:field="*{Popularnosc}" type="number" placeholder="Sprzedane" id="popularnosc" min="1" max="1000000" step="1" required>
             </div>
             <button id="confirm-but"> Potwierdz</button>
         </form>
