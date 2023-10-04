@@ -1,5 +1,6 @@
 package com.mefju.virtual_library.Controller;
 
+import com.mefju.virtual_library.Entity.Biblioteki;
 import com.mefju.virtual_library.Entity.Book;
 import com.mefju.virtual_library.Repository.BibliotekiRepository;
 import com.mefju.virtual_library.Repository.BookRepository;
@@ -14,10 +15,12 @@ import java.util.Optional;
 @Controller
 public class AdminController {
     private final BookRepository bookRepository;
+    private final BibliotekiRepository bibliotekiRepository;
 
     public AdminController(BookRepository bookRepository, BibliotekiRepository bibliotekiRepository)
     {
         this.bookRepository = bookRepository;
+        this.bibliotekiRepository = bibliotekiRepository;
     }
 
     @GetMapping("/Menu")
@@ -28,6 +31,9 @@ public class AdminController {
 
         List<String>categories =bookRepository.Typeall();
         themodel.addAttribute("categories",categories);
+
+        List<Biblioteki> biblioteki =bibliotekiRepository.findAll();
+        themodel.addAttribute("lokal",biblioteki);
         return "main";
     }
     @GetMapping("/ShowFormForAdd")
@@ -60,35 +66,49 @@ public class AdminController {
         return "redirect:/Menu";
     }
     @PostMapping("/szukanie")
-    public String szukanie(@RequestParam("name")String name, Model themodel) {
+    public String szukanie(@RequestParam("name")String name, Model themodel)
+    {
         List<Book> books=bookRepository.findBooksByNameLike(name);
         themodel.addAttribute("Book",books);
         List<String>categories =bookRepository.Typeall();
         themodel.addAttribute("categories",categories);
+        List<Biblioteki> biblioteki =bibliotekiRepository.findAll();
+        themodel.addAttribute("lokal",biblioteki);
         return "main";
     }
     @PostMapping("/SzukaniePoCenie")
-    public String SzukaniePoCenie(@RequestParam("min")int min, @RequestParam("max")int max, Model themodel) {
+    public String SzukaniePoCenie(@RequestParam("min")int min, @RequestParam("max")int max, Model themodel)
+    {
         List<Book> books=bookRepository.findBooksByPrice(min, max);
         themodel.addAttribute("Book",books);
         List<String>categories =bookRepository.Typeall();
         themodel.addAttribute("categories",categories);
-        return "main";
-    }
-    @GetMapping("/prom")
-    public String Promocja(Model themodel) {
-        List<Book> books=bookRepository.findBooksByPromocja();
-        themodel.addAttribute("Book",books);
-        List<String>categories =bookRepository.Typeall();
-        themodel.addAttribute("categories",categories);
+        List<Biblioteki> biblioteki =bibliotekiRepository.findAll();
+        themodel.addAttribute("lokal",biblioteki);
         return "main";
     }
     @PostMapping("/szukanierodzajów")
-    public String szukanietype(@RequestParam("type")String type, Model themodel) {
+    public String szukanietype(@RequestParam("type")String type, Model themodel)
+    {
         List<Book> books=bookRepository.findBooksByTypeLike(type);
         themodel.addAttribute("Book",books);
         List<String>categories =bookRepository.Typeall();
         themodel.addAttribute("categories",categories);
+        List<Biblioteki> biblioteki =bibliotekiRepository.findAll();
+        themodel.addAttribute("lokal",biblioteki);
+
+        return "main";
+    }
+    @PostMapping("/szukaniebiblioteki")
+    public String szukaniebiblioteki(@RequestParam("biblioteka")String biblioteka, Model themodel)
+    {
+        List<Book> books=bookRepository.FindBooksByLibrary(biblioteka);
+        themodel.addAttribute("Book", books);
+        List<String> categories = bookRepository.Typeall();
+        themodel.addAttribute("categories", categories);
+        List<Biblioteki> biblioteki =bibliotekiRepository.findAll();
+        themodel.addAttribute("lokal",biblioteki);
+
         return "main";
     }
     @GetMapping("/Sort")
@@ -98,6 +118,8 @@ public class AdminController {
         themodel.addAttribute("Book",books);
         List<String>categories =bookRepository.Typeall();
         themodel.addAttribute("categories",categories);
+        List<Biblioteki> biblioteki =bibliotekiRepository.findAll();
+        themodel.addAttribute("lokal",biblioteki);
         return "main";
     }
     @GetMapping("/Sortmal")
@@ -107,6 +129,8 @@ public class AdminController {
         themodel.addAttribute("Book",books);
         List<String>categories =bookRepository.Typeall();
         themodel.addAttribute("categories",categories);
+        List<Biblioteki> biblioteki =bibliotekiRepository.findAll();
+        themodel.addAttribute("lokal",biblioteki);
         return "main";
     }
     @GetMapping("/popular")
@@ -116,6 +140,8 @@ public class AdminController {
         themodel.addAttribute("Book",books);
         List<String>categories =bookRepository.Typeall();
         themodel.addAttribute("categories",categories);
+        List<Biblioteki> biblioteki =bibliotekiRepository.findAll();
+        themodel.addAttribute("lokal",biblioteki);
         return "main";
     }
 }

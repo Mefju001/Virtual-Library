@@ -3,23 +3,24 @@ package com.mefju.virtual_library.Entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "book", schema = "public")
+@Table(name = "book")
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name= "ID")
+    @Column(name= "id")
     private int id;
-    @Column(name = "Name")
+
+    @Column(name = "Nazwa")
     private String Name;
-    @Column(name = "Type")
+    @Column(name = "Rodzaj")
     private String Type;
-    @Column(name = "Price")
+    @Column(name = "Cena")
     private double Price;
-    @Column(name = "Publisher")
+    @Column(name = "Wydawca")
     private String Publisher;
-    @Column(name = "Rating")
+    @Column(name = "Ocena")
     private int Rating;
-    @Column(name = "Author")
+    @Column(name = "Autor")
     private String Author;
     @Column(name = "Popularnosc")
     private int Popularnosc;
@@ -27,6 +28,17 @@ public class Book {
     private String Dostepnosc;
     @Column(name = "Picturepath")
     private String PicturePath;
+
+    @Column(name = "ID_library")
+    private String idlibrary;
+
+    public String getIdlibrary() {
+        return idlibrary;
+    }
+
+    public void setIdlibrary(String idlibrary) {
+        this.idlibrary = idlibrary;
+    }
 
     public Book() {
     }

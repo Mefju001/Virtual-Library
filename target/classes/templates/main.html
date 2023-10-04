@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="PL" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,16 +14,19 @@
             <a class="nav-button" th:action="@{/prom}"> Promocje</a>
             <a class="nav-button" th:href="@{/Library}">Biblioteki</a>
             <a class="nav-button" onclick="document.getElementById('logoutForm').submit();">Wyloguj
-            <form id="logoutForm" th:action="@{/logout}" method="post" style="display: none;">
-                <input type="submit" value="Wyloguj">
-            </form> </a>
+                <form id="logoutForm" th:action="@{/logout}" method="post" style="display: none;">
+                    <input type="submit" value="Wyloguj">
+                </form></a>
+            <a class="nav-button"><span sec:authorize="isAuthenticated()">
+    Zalogowany jako: <span sec:authentication="principal.username"></span></span></a>
         </div>
         <h1>Virtual Library</h1>
     </nav>
     <nav class="sidebar">
-        <ul>
+    </nav>
+    <div class="ksiazki">
+        <ul class="menu">
             <li><a href="#">FILTRY</a></li>
-            <li><a th:href="@{/prom}">Anuluj sortowanie</a></li>
             <li>
                 <form th:action="@{/szukanie}" method="post">
                     Wpisz szukaną nazwę
@@ -56,9 +59,29 @@
                     </ul>
                 </div>
             </li>
+            <li class="dropdown">
+                <a href="#">Biblioteka</a>
+                <div class="dropdown-content">
+                    <ul>
+                        <li th:each="biblioteka : ${lokal}">
+                            <form th:action="@{/szukaniebiblioteki}" method="post">
+                                <input type="hidden" name="biblioteka" th:value="${biblioteka.id}" />
+                                <button type="submit" th:text="${biblioteka.id}"></button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="#">Sortowanie</a>
+                <div class="dropdown-content">
+                    <a th:href="@{/Sort}">Sortowanie rosnąco</a>
+                    <a th:href="@{/Sortmal}">Sortowanie malejąco</a>
+                    <a th:href="@{/popular}">Popularność</a>
+                    <a th:href="@{/Menu}">Anuluj sortowanie</a>
+                </div>
+            </li>
         </ul>
-    </nav>
-    <div class="ksiazki">
         <nav class="content">
             <div th:each="book:${Book}" class="book">
                 <img th:src="${book.getPicturePath()}" alt="Opis obrazka">
@@ -84,15 +107,6 @@
         </nav>
     </div>
     <nav class="side">
-        <li class="dropdown">
-            <a href="#">Sortowanie</a>
-            <div class="dropdown-content">
-                <a th:href="@{/Sort}">Sortowanie rosnąco</a>
-                <a th:href="@{/Sortmal}">Sortowanie malejąco</a>
-                <a th:href="@{/popular}">Popularność</a>
-                <a th:href="@{/Menu}">Anuluj sortowanie</a>
-            </div>
-        </li>
     </nav>
     <footer class="footer" id="kontakt">
         <div class="kontakt">
