@@ -23,6 +23,7 @@ public class Security {
     {
         httpSecurity.authorizeHttpRequests(configurer->
                         configurer
+                                .requestMatchers("/register").permitAll()
                                 .requestMatchers("/").permitAll()
                                 .requestMatchers("/Login").permitAll()
                                 .requestMatchers("/Logowanie.css").permitAll()

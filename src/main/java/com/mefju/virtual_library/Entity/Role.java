@@ -3,15 +3,18 @@ package com.mefju.virtual_library.Entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "authorities", schema = "public")
+@Table(name = "authorities")
 public class Role {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Username")
+    @Column(name = "username",unique = true)
     private String ID;
 
-    @Column(name = "Authority")
+    @Column(name = "authority")
     private String rola;
+
+    /*@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "username")
+    private User user;*/
 
     public Role() {
     }
@@ -29,6 +32,6 @@ public class Role {
     }
 
     public void setRola(String rola) {
-        this.rola = "ROLE_" + rola.toUpperCase();
+        this.rola = rola.toUpperCase();
     }
 }

@@ -2,18 +2,21 @@ package com.mefju.virtual_library.Entity;
 
 import jakarta.persistence.*;
 
+import java.util.Collection;
+import java.util.Set;
+
 @Entity
-@Table(name = "users",schema =  "public")
+@Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Username")
+    @Column(name = "username",unique = true)
     private String Username;
-    @Column(name = "Password")
+    @Column(name = "password")
     private String Password;
-    @Column(name = "Enabled")
-    private int Enabled;
-
+    @Column(name = "enabled")
+    private Boolean Enabled;
+   /* @OneToMany(mappedBy = "user",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Role> roles;*/
     public User() {
     }
     public String getUsername() {
@@ -32,11 +35,11 @@ public class User {
         Password = password;
     }
 
-    public int getEnabled() {
+    public Boolean getEnabled() {
         return Enabled;
     }
 
-    public void setEnabled(int enabled) {
+    public void setEnabled(Boolean enabled) {
         this.Enabled = enabled;
     }
 }

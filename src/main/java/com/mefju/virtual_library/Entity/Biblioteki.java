@@ -6,8 +6,7 @@ import jakarta.persistence.*;
 @Table(name = "Biblioteki")
 public class Biblioteki {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name= "ID_Library")
+    @Column(name= "ID_Library",unique = true)
     private String id;
     @Column(name = "lokalizacja")
     private String adres;
