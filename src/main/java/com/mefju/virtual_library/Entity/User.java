@@ -1,9 +1,9 @@
 package com.mefju.virtual_library.Entity;
 
-import jakarta.persistence.*;
-
-import java.util.Collection;
-import java.util.Set;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "users")
@@ -15,8 +15,7 @@ public class User {
     private String Password;
     @Column(name = "enabled")
     private Boolean Enabled;
-   /* @OneToMany(mappedBy = "user",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Role> roles;*/
+
     public User() {
     }
     public String getUsername() {

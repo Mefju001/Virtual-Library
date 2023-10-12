@@ -24,14 +24,12 @@ public class Security {
         httpSecurity.authorizeHttpRequests(configurer->
                         configurer
                                 .requestMatchers("/register").permitAll()
-                                .requestMatchers("/").permitAll()
                                 .requestMatchers("/Login").permitAll()
                                 .requestMatchers("/Logowanie.css").permitAll()
-                                .requestMatchers("/img/**").permitAll()
-                                .requestMatchers("/Menu").hasAnyRole("ADMIN")
-                                .requestMatchers("/logout").hasAnyRole("ADMIN","USER")
-                                .requestMatchers("/Add",
-                                        "/ShowFormForUpdate",
+                                .requestMatchers("/Menu").permitAll()
+                                .requestMatchers("/logout","/img/**").hasAnyRole("ADMIN","USER")
+                                .requestMatchers("/MenuAdmin",
+                                        "/ShowFormForUpdate","/Delete",
                                         "/ShowFormForAdd").hasRole("ADMIN")
                                 .anyRequest().authenticated()
                 )
@@ -42,14 +40,15 @@ public class Security {
                         form
                                 .loginPage("/Login")
                                 .loginProcessingUrl("/authenticateTheUser")
-                                .defaultSuccessUrl("/Menu",true)
+                                .defaultSuccessUrl("/redirect")
                                 .permitAll()
                 )
                 .logout(LogoutConfigurer->LogoutConfigurer
                         .permitAll()
-                        .logoutSuccessUrl("/")
+                        .logoutSuccessUrl("/Login")
                 );
 
         return httpSecurity.build();
     }
+
 }

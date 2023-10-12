@@ -1,40 +1,53 @@
 package com.mefju.virtual_library.Controller;
 
-import com.mefju.virtual_library.Entity.Biblioteki;
-import com.mefju.virtual_library.Entity.Book;
-import com.mefju.virtual_library.Repository.BibliotekiRepository;
-import com.mefju.virtual_library.Repository.BookRepository;
+import com.mefju.virtual_library.Entity.*;
+import com.mefju.virtual_library.Service.*;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
 @Controller
 public class AdminController {
-    private final BookRepository bookRepository;
-    private final BibliotekiRepository bibliotekiRepository;
 
-    public AdminController(BookRepository bookRepository, BibliotekiRepository bibliotekiRepository)
+    private final BookService bookService;
+    private final BibliotekiService bibliotekiService;
+    private void prepareModel(Model themodel)
     {
-        this.bookRepository = bookRepository;
-        this.bibliotekiRepository = bibliotekiRepository;
+        List<String>categories =bookService.TypeAll();
+        themodel.addAttribute("categories",categories);
+        List<Biblioteki> biblioteki =bibliotekiService.FindAll();
+        themodel.addAttribute("lokal",biblioteki);
+    }
+    private void ShowUsername(Model themodel)
+    {
+        Principal principal = SecurityContextHolder.getContext().getAuthentication();
+        String loggedInUsername = principal.getName();
+        themodel.addAttribute("username",loggedInUsername);
+    }
+    public AdminController(BookService bookService, BibliotekiService bibliotekiService)
+    {
+        this.bibliotekiService = bibliotekiService;
+        this.bookService = bookService;
     }
 
-    @GetMapping("/Menu")
+    @GetMapping("/MenuAdmin")
     public String show(Model themodel)
     {
-        List<Book> books = bookRepository.findAll();
+        List<Book> books = bookService.FindAll();
         themodel.addAttribute("Book",books);
-
-        List<String>categories =bookRepository.Typeall();
-        themodel.addAttribute("categories",categories);
-
-        List<Biblioteki> biblioteki =bibliotekiRepository.findAll();
-        themodel.addAttribute("lokal",biblioteki);
-        return "main";
+        prepareModel(themodel);
+        ShowUsername(themodel);
+        return "mainAdmin";
     }
     @GetMapping("/ShowFormForAdd")
     public String ShowFormForAdd(Model themodel)
@@ -49,99 +62,20 @@ public class AdminController {
 
         String picturePath = "\\Img\\" + file.getOriginalFilename();
         book.setPicturePath(picturePath);
-        bookRepository.save(book);
+        bookService.save(book);
         return "redirect:/Menu";
     }
     @GetMapping("/ShowFormForUpdate")
     public String addKarnet(@RequestParam("id") int id, Model theModel)
     {
-        Optional<Book> book = bookRepository.findById(id);
+        Optional<Book> book = bookService.FindByID(id);
         theModel.addAttribute("Book",book);
         return "Formularz";
     }
     @GetMapping("/Delete")
     public String Delete(@RequestParam("id") int id)
     {
-        bookRepository.deleteById(id);
+        bookService.DeleteById(id);
         return "redirect:/Menu";
-    }
-    @PostMapping("/szukanie")
-    public String szukanie(@RequestParam("name")String name, Model themodel)
-    {
-        List<Book> books=bookRepository.findBooksByNameLike(name);
-        themodel.addAttribute("Book",books);
-        List<String>categories =bookRepository.Typeall();
-        themodel.addAttribute("categories",categories);
-        List<Biblioteki> biblioteki =bibliotekiRepository.findAll();
-        themodel.addAttribute("lokal",biblioteki);
-        return "main";
-    }
-    @PostMapping("/SzukaniePoCenie")
-    public String SzukaniePoCenie(@RequestParam("min")int min, @RequestParam("max")int max, Model themodel)
-    {
-        List<Book> books=bookRepository.findBooksByPrice(min, max);
-        themodel.addAttribute("Book",books);
-        List<String>categories =bookRepository.Typeall();
-        themodel.addAttribute("categories",categories);
-        List<Biblioteki> biblioteki =bibliotekiRepository.findAll();
-        themodel.addAttribute("lokal",biblioteki);
-        return "main";
-    }
-    @PostMapping("/szukanierodzajów")
-    public String szukanietype(@RequestParam("type")String type, Model themodel)
-    {
-        List<Book> books=bookRepository.findBooksByTypeLike(type);
-        themodel.addAttribute("Book",books);
-        List<String>categories =bookRepository.Typeall();
-        themodel.addAttribute("categories",categories);
-        List<Biblioteki> biblioteki =bibliotekiRepository.findAll();
-        themodel.addAttribute("lokal",biblioteki);
-
-        return "main";
-    }
-    @PostMapping("/szukaniebiblioteki")
-    public String szukaniebiblioteki(@RequestParam("biblioteka")String biblioteka, Model themodel)
-    {
-        List<Book> books=bookRepository.FindBooksByLibrary(biblioteka);
-        themodel.addAttribute("Book", books);
-        List<String> categories = bookRepository.Typeall();
-        themodel.addAttribute("categories", categories);
-        List<Biblioteki> biblioteki =bibliotekiRepository.findAll();
-        themodel.addAttribute("lokal",biblioteki);
-
-        return "main";
-    }
-    @GetMapping("/Sort")
-    public String Sortowanie(Model themodel)
-    {
-        List<Book> books = bookRepository.SortPrice();
-        themodel.addAttribute("Book",books);
-        List<String>categories =bookRepository.Typeall();
-        themodel.addAttribute("categories",categories);
-        List<Biblioteki> biblioteki =bibliotekiRepository.findAll();
-        themodel.addAttribute("lokal",biblioteki);
-        return "main";
-    }
-    @GetMapping("/Sortmal")
-    public String Sortowaniemalejaco(Model themodel)
-    {
-        List<Book> books = bookRepository.SortPricemalejaco();
-        themodel.addAttribute("Book",books);
-        List<String>categories =bookRepository.Typeall();
-        themodel.addAttribute("categories",categories);
-        List<Biblioteki> biblioteki =bibliotekiRepository.findAll();
-        themodel.addAttribute("lokal",biblioteki);
-        return "main";
-    }
-    @GetMapping("/popular")
-    public String popular(Model themodel)
-    {
-        List<Book> books = bookRepository.popular();
-        themodel.addAttribute("Book",books);
-        List<String>categories =bookRepository.Typeall();
-        themodel.addAttribute("categories",categories);
-        List<Biblioteki> biblioteki =bibliotekiRepository.findAll();
-        themodel.addAttribute("lokal",biblioteki);
-        return "main";
     }
 }

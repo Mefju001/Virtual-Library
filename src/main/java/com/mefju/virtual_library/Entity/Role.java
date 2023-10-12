@@ -12,9 +12,6 @@ public class Role {
     @Column(name = "authority")
     private String rola;
 
-    /*@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "username")
-    private User user;*/
 
     public Role() {
     }

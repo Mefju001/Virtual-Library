@@ -10,7 +10,8 @@
 <div class="container">
     <nav class="navbar">
         <div class="navbar-buttons">
-            <a class="nav-button" th:action="@{/prom}"> Promocje</a>
+            <a class="nav-button" th:href="@{/ShowFormForAdd}" >Dodaj ksiazke</a>
+            <a class="nav-button" th:href="@{/Menu}"> Standardowe Menu</a>
             <a class="nav-button" th:href="@{/Library}">Biblioteki</a>
             <a class="nav-button" onclick="document.getElementById('logoutForm').submit();">Wyloguj
                 <form id="logoutForm" th:action="@{/logout}" method="post" style="display: none;">
@@ -90,6 +91,17 @@
                 <p>Ocena: <span th:text="${book.getRating()}"></span></p>
                 <p>Autor: <span th:text="${book.getAuthor()}"></span></p>
                 <p>Dostepnosc: <span th:text="${book.getDostepnosc()}"></span></p>
+                <p>Sprzedawalnosc: <span th:text="${book.getPopularnosc()}"></span></p>
+                <div>
+                    <a id="start1" th:href="@{/ShowFormForUpdate(id=${book.getId()})}">
+                        Edytuj
+                    </a>
+                </div>
+                <div>
+                    <a th:href="@{/Delete(id=${book.getId()})}">
+                        Usun
+                    </a>
+                </div>
             </div>
         </nav>
     </div>
