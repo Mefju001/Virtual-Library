@@ -21,15 +21,12 @@ public class AdminController {
 
     private final BookService bookService;
     private final BibliotekiService bibliotekiService;
-    private void prepareModel(Model themodel)
+    public void prepareModel(Model themodel)
     {
         List<String>categories =bookService.TypeAll();
         themodel.addAttribute("categories",categories);
         List<Biblioteki> biblioteki =bibliotekiService.FindAll();
         themodel.addAttribute("lokal",biblioteki);
-    }
-    private void ShowUsername(Model themodel)
-    {
         Principal principal = SecurityContextHolder.getContext().getAuthentication();
         String loggedInUsername = principal.getName();
         themodel.addAttribute("username",loggedInUsername);
@@ -46,7 +43,6 @@ public class AdminController {
         List<Book> books = bookService.FindAll();
         themodel.addAttribute("Book",books);
         prepareModel(themodel);
-        ShowUsername(themodel);
         return "mainAdmin";
     }
     @GetMapping("/ShowFormForAdd")
