@@ -1,6 +1,7 @@
 package com.mefju.virtual_library.Controller;
 
 
+import com.mefju.virtual_library.Entity.Book;
 import com.mefju.virtual_library.Entity.Role;
 import com.mefju.virtual_library.Entity.User;
 import com.mefju.virtual_library.Service.UserService;
@@ -9,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.Optional;
 
 @Controller
 public class RegistrationController {
@@ -44,5 +47,17 @@ public class RegistrationController {
                 return "redirect:/login"; // przekierowanie po rejestracji
             }
     }
+    /*@GetMapping("/Edycja")
+    public String edycjakonta(Model themodel)
+    {
+        Optional<User> user = userService.FindByID(id);
+        theModel.addAttribute("Book",book);
+    }
+    @GetMapping("/Usun")
+    public String usunkonto(Model themodel)
+    {
+        userService.
+        return "Logowanie";
+    }*/
 }
 
