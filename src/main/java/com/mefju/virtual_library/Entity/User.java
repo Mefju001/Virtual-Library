@@ -4,6 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "users")
@@ -12,8 +13,10 @@ public class User {
     @Column(name = "username",unique = true)
     private String Username;
     @Column(name = "password")
+    @NotNull()
     private String Password;
     @Column(name = "enabled")
+    @NotNull()
     private Boolean Enabled;
 
     public User() {

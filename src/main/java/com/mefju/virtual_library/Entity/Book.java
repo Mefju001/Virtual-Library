@@ -1,6 +1,7 @@
 package com.mefju.virtual_library.Entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "book")
@@ -9,27 +10,35 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name= "id")
     private int id;
-
     @Column(name = "Nazwa")
+    @NotNull()
     private String Name;
     @Column(name = "Rodzaj")
+    @NotNull()
     private String Type;
     @Column(name = "Cena")
+    @NotNull()
     private double Price;
     @Column(name = "Wydawca")
+    @NotNull()
     private String Publisher;
     @Column(name = "Ocena")
+    @NotNull()
     private int Rating;
     @Column(name = "Autor")
+    @NotNull()
     private String Author;
     @Column(name = "Popularnosc")
+    @NotNull()
     private int Popularnosc;
     @Column(name = "Dostepnosc")
+    @NotNull()
     private String Dostepnosc;
     @Column(name = "Picturepath")
+    @NotNull()
     private String PicturePath;
-
     @Column(name = "ID_library")
+    @NotNull()
     private String idlibrary;
 
     public String getIdlibrary() {

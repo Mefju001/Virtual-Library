@@ -14,7 +14,6 @@ public class BookService
 {
     @Autowired
     private BookRepository bookRepository;
-
     @Transactional
     public void save(Book book)
     {
@@ -36,15 +35,9 @@ public class BookService
         Optional<Book> optionalBook = bookRepository.findById(id);
 
         if (optionalBook.isPresent()) {
-            // Dodatkowa logika, jeśli książka o danym ID została znaleziona
             Book book = optionalBook.get();
-            // Możesz tutaj wykonać dodatkowe operacje lub logikę biznesową
-
             return optionalBook;
         } else {
-            // Dodatkowa logika, jeśli książka o danym ID nie została znaleziona
-            // Na przykład, możesz rzucić wyjątek lub podjąć inne działania
-
             return Optional.empty();
         }
     }

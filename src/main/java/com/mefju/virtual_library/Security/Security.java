@@ -26,6 +26,7 @@ public class Security {
                                 .requestMatchers("/register").permitAll()
                                 .requestMatchers("/Login").permitAll()
                                 .requestMatchers("/Logowanie.css").permitAll()
+                                .requestMatchers("/registration-form.css").permitAll()
                                 .requestMatchers("/Menu").permitAll()
                                 .requestMatchers("/logout","/img/**").hasAnyRole("ADMIN","USER")
                                 .requestMatchers("/MenuAdmin",

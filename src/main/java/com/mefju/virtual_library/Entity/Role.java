@@ -1,6 +1,7 @@
 package com.mefju.virtual_library.Entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "authorities")
@@ -10,6 +11,7 @@ public class Role {
     private String ID;
 
     @Column(name = "authority")
+    @NotNull()
     private String rola;
 
 
