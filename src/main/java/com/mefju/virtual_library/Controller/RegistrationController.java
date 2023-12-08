@@ -1,22 +1,24 @@
 package com.mefju.virtual_library.Controller;
 
 
-import com.mefju.virtual_library.Entity.Book;
 import com.mefju.virtual_library.Entity.Role;
 import com.mefju.virtual_library.Entity.User;
 import com.mefju.virtual_library.Service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.Optional;
+import java.security.Principal;
 
 @Controller
 public class RegistrationController {
     private final UserService userService;
-
+    @Autowired
     public RegistrationController(UserService userService) {
         this.userService = userService;
     }
@@ -44,20 +46,8 @@ public class RegistrationController {
                 authority.setID(users.getUsername());
                 authority.setRola("ROLE_USER");
                 userService.AddRole(authority);
-                return "redirect:/login"; // przekierowanie po rejestracji
+                return "redirect:/Login"; // przekierowanie po rejestracji
             }
     }
-    /*@GetMapping("/Edycja")
-    public String edycjakonta(Model themodel)
-    {
-        Optional<User> user = userService.FindByID(id);
-        theModel.addAttribute("Book",book);
-    }
-    @GetMapping("/Usun")
-    public String usunkonto(Model themodel)
-    {
-        userService.
-        return "Logowanie";
-    }*/
 }
 

@@ -4,81 +4,91 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Virtual Library</title>
-    <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
 <div class="container">
     <nav class="navbar">
         <div class="navbar-buttons">
-            <a class="nav-button" th:action="@{/prom}"> Promocje</a>
+            <a><form  th:action="@{/szukanie}" method="post">
+                <label>
+                    <input class="extended-input" type="text" id="Nazwa_ksiazki" placeholder="Wpisz tytuł" name="name">
+                </label>
+                <br>
+                <button type="submit" class="link-button">Szukaj</button>
+            </form>
+            </a>
             <a class="nav-button" th:href="@{/Library}">Biblioteki</a>
-            <a class="nav-button" onclick="document.getElementById('logoutForm').submit();">Wyloguj
-                <form id="logoutForm" th:action="@{/logout}" method="post" style="display: none;">
-                    <input type="submit" value="Wyloguj">
-                </form></a>
-            <a class="nav-button">Zalogowany jako: <span th:text="${username}"></span></a>
+            <div class="nav-button dropdown">Zalogowany jako: <span class="username" th:text="${username}"></span>
+                <div class="dropdown-content2" id="myDropdown">
+                    <form id="changepass" th:action="@{/changepasswordform}" class="flex-container">
+                        <button id="passwordbutton" type="submit" class="logout-button">zmiana hasła</button>
+                    </form>
+                    <form id="deleteform" th:action="@{/DeleteUser}" class="flex-container">
+                        <button type="submit" class="logout-button">Usuń konto</button>
+                    </form>
+                    <form id="logoutForm" th:action="@{/logout}" method="post" class="flex-container">
+                        <button type="submit" class="logout-button">Wyloguj się</button>
+                    </form>
+                </div>
+            </div>
         </div>
-        <h1>Virtual Library</h1>
+        <h1 class = "nazwaprojektu">Virtual Library</h1>
     </nav>
     <nav class="sidebar">
     </nav>
     <div class="ksiazki">
         <ul class="menu">
-            <li><a href="#">FILTRY</a></li>
-            <li>
-                <form th:action="@{/szukanie}" method="post">
-                    Wpisz szukaną nazwę
-                    <label>
-                        <input type="text" name="name">
-                    </label>
-                    <br>
-                    <input type="submit" value="Szukaj">
-                </form>
-            </li>
+            <a class="filtry">FILTRY</a>
             <form th:action="@{/SzukaniePoCenie}" method="post">
-                <label for="min">Minimalna cena:</label>
-                <input type="text" id="min" name="min">
-                <br>
-                <label for="max">Maksymalna cena:</label>
-                <input type="text" id="max" name="max">
-                <br>
-                <input type="submit" value="Szukaj">
+                <div class="search-input">
+                    <label for="min">Minimalna cena:</label>
+                    <input class ="szukcena" type="number" id="min" name="min" placeholder="Wprowadź minimalną cenę">
+                </div>
+                <div class="search-input">
+                    <label for="max">Maksymalna cena:</label>
+                    <input class ="szukcena" type="number" id="max" name="max" placeholder="Wprowadź maksymalną cenę">
+                </div>
+                <div class="search-input">
+                    <input type="submit" value="Szukaj">
+                </div>
             </form>
-            <li class="dropdown">
-                <a href="#">Kategorie</a>
-                <div class="dropdown-content">
-                    <ul>
+            <ul class="menu-content">
+                <li class="submenu">
+                    <label for="submenu-toggle" class="submenu-button">Sortowanie</label>
+                    <input type="checkbox" id="submenu-toggle" class="submenu-toggle">
+                    <ul class="submenu-content">
+                        <li><a class = "tekst" th:href="@{/Sort}">Sortowanie rosnąco</a></li>
+                        <li><a class = "tekst" th:href="@{/Sortmal}">Sortowanie malejąco</a></li>
+                        <li><a class = "tekst" th:href="@{/popular}">Popularność</a></li>
+                    </ul>
+                </li>
+                <li class="submenu2">
+                    <label for="submenu2-toggle" class="submenu2-button">Kategorie</label>
+                    <input type="checkbox" id="submenu2-toggle" class="submenu2-toggle">
+                    <ul class="submenu2-content">
                         <li th:each="category : ${categories}">
                             <form th:action="@{/szukanierodzajów}" method="post">
                                 <input type="hidden" name="type" th:value="${category}" />
-                                <button type="submit" th:text="${category}"></button>
+                                <a class = "tekst" href="#" th:text="${category}" onclick="this.parentNode.submit(); return false;"></a>
                             </form>
                         </li>
                     </ul>
-                </div>
-            </li>
-            <li class="dropdown">
-                <a href="#">Biblioteka</a>
-                <div class="dropdown-content">
-                    <ul>
+                </li>
+                <li class="submenu3">
+                    <label for="submenu3-toggle" class="submenu3-button">Biblioteki</label>
+                    <input type="checkbox" id="submenu3-toggle" class="submenu3-toggle">
+                    <ul class="submenu3-content">
                         <li th:each="biblioteka : ${lokal}">
                             <form th:action="@{/szukaniebiblioteki}" method="post">
                                 <input type="hidden" name="biblioteka" th:value="${biblioteka.id}" />
-                                <button type="submit" th:text="${biblioteka.id}"></button>
+                                <a class = "tekst" href="#" th:text="'Biblioteka ' + ${biblioteka.getAdres()}" onclick="this.parentNode.submit(); return false;"></a>
                             </form>
                         </li>
                     </ul>
-                </div>
-            </li>
-            <li class="dropdown">
-                <a href="#">Sortowanie</a>
-                <div class="dropdown-content">
-                    <a th:href="@{/Sort}">Sortowanie rosnąco</a>
-                    <a th:href="@{/Sortmal}">Sortowanie malejąco</a>
-                    <a th:href="@{/popular}">Popularność</a>
-                    <a th:href="@{/Menu}">Anuluj sortowanie</a>
-                </div>
-            </li>
+                </li>
+                <li class="submenu4"><a class = "anuluj" th:href="@{/MenuAdmin}">Anuluj sortowanie</a></li>
+            </ul>
         </ul>
         <nav class="content">
             <div th:each="book:${Book}" class="book">
@@ -92,6 +102,7 @@
                 <p>Dostepnosc: <span th:text="${book.getDostepnosc()}"></span></p>
             </div>
         </nav>
+
     </div>
     <nav class="side">
     </nav>
@@ -104,6 +115,7 @@
         </div>
     </footer>
 </div>
+<script src="/main.js"></script>
 </body>
 </html>
 

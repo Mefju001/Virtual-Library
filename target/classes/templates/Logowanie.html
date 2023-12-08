@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
     <title>Formularz logowania</title>
-    <link rel="stylesheet" href="/Logowanie.css">
+    <link rel="stylesheet" href="/css/Logowanie.css">
 </head>
 <body>
 <div class="container">
@@ -24,6 +24,10 @@
                class="btn btn-primary mt-3"
                role="button"
                aria-pressed="true">Rejestracja</a>
+        </div>
+        <div>
+            <p th:if="${successMessage}" class="success-message" th:text="${successMessage}"></p>
+            <p th:if="${errorMessage}" class="error-message" th:text="${errorMessage}"></p>
         </div>
         <div  th:if="${param.error}">
             <i class ="failed">Wpisałeś niepoprawne hasło badz login.</i>

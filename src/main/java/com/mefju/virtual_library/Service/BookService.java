@@ -12,8 +12,14 @@ import java.util.Optional;
 @Service
 public class BookService
 {
-    @Autowired
+
     private BookRepository bookRepository;
+
+    @Autowired
+    public void SetBookRepository(BookRepository bookRepository)
+    {
+        this.bookRepository = bookRepository;
+    }
     @Transactional
     public void save(Book book)
     {

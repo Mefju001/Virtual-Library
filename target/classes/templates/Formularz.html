@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="/formularz.css">
+    <link rel="stylesheet" href="/css/formularz.css">
 </head>
 <body>
     <div id="dodaj">
@@ -46,6 +46,16 @@
             <div class="wiersz">
                 <label for="Popularnosc">Sprzedawalnosc</label>
                 <input name="popularnosc" th:field="*{popularnosc}" type="number" placeholder="Sprzedane" id="popularnosc" min="1" max="1000000" step="1" required>
+            </div>
+            <div class="wiersz">
+                <label>Dostepnosc
+                    <select name="Dostepnosc " th:field="*{idlibrary}">
+                        <option value="Biblioteka1">Biblioteka w Katowicach</option>
+                        <option value="Biblioteka2">Biblioteka w Sosnowcu</option>
+                        <option value="Biblioteka3">Biblioteka w Gliwicach</option>
+
+                    </select>
+                </label>
             </div>
             <button id="confirm-but"> Potwierdz</button>
         </form>

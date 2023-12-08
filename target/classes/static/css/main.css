@@ -1,0 +1,368 @@
+body, html {
+    background-color: aliceblue;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 0.5fr 6fr 0.5fr;
+    grid-template-rows: auto 8fr auto;
+    grid-template-areas:
+        "navbar navbar navbar"
+        "sidebar content side"
+        "sidebar footer side";
+    width: 100%;
+    height: 100%;
+}
+
+.navbar {
+    grid-area: navbar;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-around;
+}
+.extended-input {
+    margin-right: 10px;
+    width: 300px; /* Możesz zmieniać wartość, aby dopasować szerokość pola wejściowego */
+    border-radius: 20px; /* Ustawianie zaokrąglonych rogów */
+    padding: 10px; /* Dodanie wewnętrznego marginesu dla lepszego wyglądu */
+    border: 3px solid rgb(128, 128, 128); /* Dodanie obramowania */
+    outline: none; /* Usunięcie outline'a (podświetlenia) na focussie */
+}
+.navbar-buttons {
+    display: flex;
+}
+.search-input {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    flex-direction: column;
+    align-items: center;
+}
+.szukcena
+{
+    padding: 10px;
+    border-radius: 10px;
+    width: 200px;
+    height: 20px;
+}
+
+label {
+    text-align-last: center;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="number"],
+input[type="submit"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px;
+}
+
+input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+.nav-button {
+    max-height: 20px;
+    border-radius: 15px;
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-right: 10px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.nav-button:last-child {
+    margin-right: 0;
+}
+
+.nav-button:hover {
+    background-color: #555;
+}
+
+.filtry
+{
+    padding: 10px;
+    border-bottom: 2px solid #000000;
+    display: flex;
+    justify-content: center;
+}
+
+.menu {
+    border-right: 1px solid #000000;
+    max-width: 250px;
+    /* box-shadow: 0 0 0 2px #000; */
+    /* background-color: gainsboro; */
+    padding-top: 100px;
+    padding-right: 30px;
+    /* padding-left: 30px; */
+    /* display: flex; */
+    flex-direction: column;
+    /* flex-wrap: wrap; */
+    /* justify-content: flex-start; */
+
+}
+
+.sidebar {
+    grid-area: sidebar;
+    background-color: #333;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin-bottom: 10px;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+}
+
+.ksiazki {
+    display: flex;
+    flex-direction: row;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.side {
+    max-height: 100%;
+    grid-area: side;
+    background-color: #333;
+}
+
+.side li {
+    margin-bottom: 10px;
+}
+
+.side a {
+    color: white;
+    text-decoration: none;
+}
+.tekst
+{
+    text-decoration: none;
+    font-style: italic;
+    color: black;
+}
+.content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.book {
+    max-height:730px;
+    min-width: 33vh;
+    border-radius: 40px;
+    scale: 0.7;
+    max-width: 330px;
+    display: flex;
+    border: 5px solid #000000;
+    padding: 20px;
+    background-color: #d2caca;
+    flex-direction: column;
+}
+
+.book:hover {
+    scale: 0.9;
+    transition: 2s;
+}
+.book:hover p{
+    font-weight: bold;
+}
+.book img {
+    align-self: center;
+    max-width: 40%;
+    height: auto;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.button {
+    font-size: 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.footer {
+    grid-area: footer;
+    display: flex;
+    justify-content: flex-start;
+    padding: 10px;
+}
+
+.kontakt {
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.kontakt a, .kontakt p {
+    color: black;
+    margin: 0;
+    line-height: 1.5;
+    font-size: 1.1rem;
+    word-break: break-word;
+}
+.flex-container {
+    display: flex;
+    justify-content: center; /* Wyśrodkowanie wzdłuż osi poziomej */
+    align-items: center; /* Wyśrodkowanie wzdłuż osi pionowej */
+    height: max-content; /* Wysokość równa wysokości widoku */
+}
+
+/* Stylizacja przycisku wylogowania */
+.logout-button {
+    background-color: #333;
+    color: white;
+    padding: 12px 24px; /* Zwiększenie padding dla większych przycisków */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px; /* Zwiększenie wielkości czcionki */
+    transition: background-color 0.3s ease; /* Efekt przejścia dla hovera */
+}
+
+/* Dodatkowy efekt po najechaniu myszką */
+.logout-button:hover {
+    background-color: #ff6c4b;
+}
+.dropbtn {
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.dropdown-content2 {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: none;
+    position: absolute;
+    background-color: #333;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    /* width: 1%; */
+    z-index: 1;
+    min-width: max-content;
+    padding: 10px;
+    margin-top: 12px;
+}
+.dropdown-content2:hover .dropbtn{
+    background-color: #555;
+}
+.dropdown-content2 a {
+    color: #333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content2 a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content2 {
+    background-color: #555;
+    display: block;
+}
+
+.link-button {
+    display: none;
+}
+
+
+.menu-button {
+    cursor: pointer;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    display: block;
+}
+
+.menu-content {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    position: absolute;
+    z-index: 1;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.menu-content li {
+    padding: 8px 12px;
+}
+
+/* Reszta twojego istniejącego CSS */
+/* ... */
+
+.submenu-content,
+.submenu2-content,
+.submenu3-content {
+    display: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.submenu-content li,
+.submenu2-content li,
+.submenu3-content li
+.submenu4-content li {
+    padding: 8px 12px;
+}
+
+.submenu-toggle,
+.submenu2-toggle,
+.submenu3-toggle {
+    display: none;
+}
+
+#submenu-toggle:checked ~ .submenu-content {
+    display: block;
+}
+
+#submenu2-toggle:checked ~ .submenu2-content {
+    display: block;
+}
+#submenu3-toggle:checked ~ .submenu3-content {
+    display: block;
+}
+.anuluj
+{
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+#changepass,
+#deleteform{
+    padding-bottom: 40px;
+}

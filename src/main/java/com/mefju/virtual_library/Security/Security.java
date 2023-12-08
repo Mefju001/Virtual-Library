@@ -23,12 +23,10 @@ public class Security {
     {
         httpSecurity.authorizeHttpRequests(configurer->
                         configurer
-                                .requestMatchers("/register").permitAll()
-                                .requestMatchers("/Login").permitAll()
-                                .requestMatchers("/Logowanie.css").permitAll()
-                                .requestMatchers("/registration-form.css").permitAll()
-                                .requestMatchers("/Menu").permitAll()
-                                .requestMatchers("/logout","/img/**").hasAnyRole("ADMIN","USER")
+                                .requestMatchers("/register","/Login","/Menu").permitAll()
+                                .requestMatchers("/Img/**").permitAll()
+                                .requestMatchers("/css/**").permitAll()
+                                .requestMatchers("/logout").hasAnyRole("ADMIN","USER")
                                 .requestMatchers("/MenuAdmin",
                                         "/ShowFormForUpdate","/Delete",
                                         "/ShowFormForAdd").hasRole("ADMIN")

@@ -1,0 +1,35 @@
+/* Resetowanie domyślnych styli dla przeglądarek */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif; /* Domyślna czcionka */
+    line-height: 1.6;
+}
+
+/* Styl dla nagłówka h1 */
+h1 {
+    text-align: center;
+    margin-top: 50px; /* Odstęp od góry */
+}
+
+/* Styl dla linii po nagłówku */
+hr {
+    width: 50%;
+    margin: 20px auto; /* Centralne umieszczenie */
+    border: none;
+    border-top: 2px solid #333; /* Kolor linii */
+}
+
+/* Styl dla linku powrotu */
+a {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #007bff; /* Kolor linku */
+}
+
+/* Styl dla linku powrotu po najechaniu myszką */
+a:hover {
+    text-decoration: underline;
+}

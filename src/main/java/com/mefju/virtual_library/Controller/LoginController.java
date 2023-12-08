@@ -12,6 +12,7 @@ import java.io.IOException;
 
 @Controller
 public class LoginController {
+
     @GetMapping("/Login")
     public String LoginPanel()
     {

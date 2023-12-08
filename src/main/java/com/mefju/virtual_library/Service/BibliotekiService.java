@@ -10,8 +10,14 @@ import java.util.List;
 
 @Service
 public class BibliotekiService {
-    @Autowired
+
     private BibliotekiRepository bibliotekiRepository;
+
+    @Autowired
+    public void SetBibliotekiRepository(BibliotekiRepository bibliotekiRepository)
+    {
+        this.bibliotekiRepository = bibliotekiRepository;
+    }
 
     @Transactional
     public List<Biblioteki> FindAll()
