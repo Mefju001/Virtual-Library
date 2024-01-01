@@ -1,0 +1,55 @@
+body {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: rgb(128, 128, 128);
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+}
+h1 {
+    text-align: center; /* Wyrównanie tekstu do środka */
+    color: white; /* Kolor tekstu */
+    margin-top: 20px; /* Margines od góry */
+    font-size: 32px; /* Rozmiar czcionki */
+}
+.container {
+    text-align: center;
+    margin-top: 20px;
+}
+table {
+    border-collapse: collapse;
+    margin: 20px auto;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.lokalizacja {
+    /* position: relative; */
+    /* width: 100%; */
+    /* padding-top: 75%; */
+    overflow: hidden;
+    /* margin-top: 10px; */
+    /* border-radius: 5px;*/
+}
+
+.lokalizacja iframe {
+    width: 600px;
+    height: 350px;
+    border:0;
+    top: 0;
+    left: 0;
+    /* border: none; */
+    /* border-radius: 5px;*/
+}

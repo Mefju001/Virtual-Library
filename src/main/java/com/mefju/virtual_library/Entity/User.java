@@ -18,6 +18,12 @@ public class User {
     @Column(name = "enabled")
     @NotNull()
     private Boolean Enabled;
+    @Column(name = "Imie")
+    @NotNull()
+    private String Imie;
+    @Column(name = "Nazwisko")
+    @NotNull()
+    private String Nazwisko;
 
     public User() {
     }
@@ -43,5 +49,21 @@ public class User {
 
     public void setEnabled(Boolean enabled) {
         this.Enabled = enabled;
+    }
+
+    public String getImie() {
+        return Imie;
+    }
+
+    public void setImie(String imie) {
+        Imie = imie;
+    }
+
+    public String getNazwisko() {
+        return Nazwisko;
+    }
+
+    public void setNazwisko(String nazwisko) {
+        Nazwisko = nazwisko;
     }
 }

@@ -43,5 +43,11 @@ public class UserController {
         prepareModel(themodel);
         return "main";
     }
-
+    @GetMapping("/Library")
+    public String showLibrary(Model themodel)
+    {
+        List<Biblioteki>bibliotekis=bibliotekiService.FindAll();
+        themodel.addAttribute("Biblioteki",bibliotekis);
+        return "Biblioteki";
+    }
 }

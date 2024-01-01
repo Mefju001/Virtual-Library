@@ -21,6 +21,8 @@
             <a class="nav-button" th:href="@{/ShowFormForAdd}" >Dodaj ksiazke</a>
             <a class="nav-button" th:href="@{/Menu}"> Standardowe Menu</a>
             <a class="nav-button" th:href="@{/Library}">Biblioteki</a>
+            <a class="nav-button" th:href="@{/Listauzytkownikow}">Uzytkownicy</a>
+
             <div class="nav-button dropdown">Zalogowany jako: <span class="username" th:text="${username}"></span>
                 <div class="dropdown-content2" id="myDropdown">
                     <form id="changepass" th:action="@{/changepasswordform}" class="flex-container">
@@ -84,7 +86,7 @@
                         <li th:each="biblioteka : ${lokal}">
                             <form th:action="@{/szukaniebiblioteki}" method="post">
                                 <input type="hidden" name="biblioteka" th:value="${biblioteka.id}" />
-                                <a class = "tekst" href="#" th:text="'Biblioteka ' + ${biblioteka.getAdres()}" onclick="this.parentNode.submit(); return false;"></a>
+                                <a class = "tekst" href="#" th:text="'Biblioteka ' + ${biblioteka.getLokalizacja()}" onclick="this.parentNode.submit(); return false;"></a>
                             </form>
                         </li>
                     </ul>

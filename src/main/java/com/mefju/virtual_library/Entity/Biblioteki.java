@@ -11,7 +11,11 @@ public class Biblioteki {
     private String id;
     @Column(name = "lokalizacja")
     @NotNull()
-    private String adres;
+    private String lokalizacja;
+    @Column(name = "Mapa")
+    private String mapa;
+    @Column(name = "Adres")
+    private String Adres;
 
 
     public String getId() {
@@ -22,12 +26,27 @@ public class Biblioteki {
         this.id = id;
     }
 
+    public String getLokalizacja() {
+        return lokalizacja;
+    }
+
+    public void setLokalizacja(String lokalizacja) {
+        this.lokalizacja = lokalizacja;
+    }
+
+    public String getMapa() {
+        return mapa;
+    }
+
+    public void setMapa(String mapa) {
+        this.mapa = mapa;
+    }
+
     public String getAdres() {
-        return adres;
+        return Adres;
     }
 
     public void setAdres(String adres) {
-        this.adres = adres;
+        Adres = adres;
     }
-
 }

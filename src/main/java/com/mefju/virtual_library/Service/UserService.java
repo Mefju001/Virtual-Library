@@ -8,6 +8,8 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
     private UserRepository userRepository;
@@ -24,6 +26,11 @@ public class UserService {
     public void AddUser(User user)
     {
         userRepository.save(user);
+    }
+    @Transactional
+    public List<User> ListUsers()
+    {
+        return userRepository.listausers();
     }
     @Transactional
     public boolean Exist(User user)

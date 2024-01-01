@@ -82,7 +82,7 @@
                         <li th:each="biblioteka : ${lokal}">
                             <form th:action="@{/szukaniebiblioteki}" method="post">
                                 <input type="hidden" name="biblioteka" th:value="${biblioteka.id}" />
-                                <a class = "tekst" href="#" th:text="'Biblioteka ' + ${biblioteka.getAdres()}" onclick="this.parentNode.submit(); return false;"></a>
+                                <a class = "tekst" href="#" th:text="'Biblioteka ' + ${biblioteka.getLokalizacja()}" onclick="this.parentNode.submit(); return false;"></a>
                             </form>
                         </li>
                     </ul>

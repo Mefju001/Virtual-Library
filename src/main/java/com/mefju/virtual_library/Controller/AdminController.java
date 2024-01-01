@@ -191,5 +191,19 @@ public class AdminController {
             userService.deleteUser(username);
             return "redirect:/Login";
         }
+        //Może do dodania
+       /* @GetMapping("/DeleteUseradmin")
+        public String DeleteUseradmin (@RequestParam("Username")String username)
+        {
+            userService.deleteUser(username);
+            return "redirect:/Listauzytkownikow";
+        }*/
+        @GetMapping("/Listauzytkownikow")
+        public String Listauzytkownikow (Model themodel)
+        {
+            List<User> users = userService.ListUsers();
+            themodel.addAttribute("users", users);
+            return "Uzytkownicy";
+        }
 }
 
