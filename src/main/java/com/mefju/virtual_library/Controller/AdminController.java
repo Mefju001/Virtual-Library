@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Controller
@@ -166,22 +167,27 @@ public class AdminController {
     @PostMapping("/changepassword")
     public String changePassword(@RequestParam("oldPassword") String oldPassword,
                                  @RequestParam("newPassword") String newPassword,
+                                 @RequestParam("newPassword2") String newPassword2,
                                  Principal principal,
                                  RedirectAttributes redirectAttributes, Authentication authentication) {
 
         String username = principal.getName();
-        String changePasswordResult = userService.changeUserPassword(username, oldPassword, newPassword);
-        if (changePasswordResult.equals("success")) {
-            redirectAttributes.addFlashAttribute("successMessage", "Hasło zostało zmienione pomyślnie");
-        } else {
-            redirectAttributes.addFlashAttribute("errorMessage", changePasswordResult);
-        }
-        if (authentication != null && authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
+        if(Objects.equals(newPassword, newPassword2)) {
+            String changePasswordResult = userService.changeUserPassword(username, oldPassword, newPassword);
+            if (changePasswordResult.equals("success")) {
+                redirectAttributes.addFlashAttribute("successMessage", "Hasło zostało zmienione pomyślnie");
+            } else {
+                redirectAttributes.addFlashAttribute("errorMessage", changePasswordResult);
+            }
+            if (authentication != null && authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
                 return "redirect:/MenuAdmin";
 
+            } else {
+                return "redirect:/Menu";
+            }
         }
         else {
-            return "redirect:/Menu";
+            return "ChangePassword";
         }
     }
         @GetMapping("/DeleteUser")
@@ -191,13 +197,6 @@ public class AdminController {
             userService.deleteUser(username);
             return "redirect:/Login";
         }
-        //Może do dodania
-       /* @GetMapping("/DeleteUseradmin")
-        public String DeleteUseradmin (@RequestParam("Username")String username)
-        {
-            userService.deleteUser(username);
-            return "redirect:/Listauzytkownikow";
-        }*/
         @GetMapping("/Listauzytkownikow")
         public String Listauzytkownikow (Model themodel)
         {

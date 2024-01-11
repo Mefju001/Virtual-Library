@@ -10,10 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.security.Principal;
 
 @Controller
 public class RegistrationController {
@@ -39,8 +35,6 @@ public class RegistrationController {
             else {
                 users.setEnabled(true);
                 users.setPassword("{noop}"+users.getPassword());
-                System.out.println(users.getUsername());
-                System.out.println(users.getPassword());
                 userService.AddUser(users);
                 Role authority = new Role();
                 authority.setID(users.getUsername());

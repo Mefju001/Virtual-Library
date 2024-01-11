@@ -44,13 +44,10 @@ public class Book {
     public String getIdlibrary() {
         return idlibrary;
     }
-
     public void setIdlibrary(String idlibrary) {
         this.idlibrary = idlibrary;
     }
 
-    public Book() {
-    }
     public int getId() {
         return id;
     }
@@ -110,5 +107,22 @@ public class Book {
     }
     public void setDostepnosc(String dostepnosc) {
         Dostepnosc = dostepnosc;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", Nazwa='" + Name + '\'' +
+                ", Rodzaj='" + Type + '\'' +
+                ", Cena=" + Price +
+                ", Wydawca='" + Publisher + '\'' +
+                ", Opinia=" + Rating +
+                ", Autor='" + Author + '\'' +
+                ", Popularnosc=" + Popularnosc +
+                ", Dostepnosc='" + Dostepnosc + '\'' +
+                ", PicturePath='" + PicturePath + '\'' +
+                ", idlibrary='" + idlibrary + '\'' +
+                '}';
     }
 }

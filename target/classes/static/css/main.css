@@ -219,7 +219,7 @@ input[type="submit"]:hover {
 .footer {
     grid-area: footer;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     padding: 10px;
 }
 

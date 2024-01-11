@@ -25,8 +25,7 @@ public class User {
     @NotNull()
     private String Nazwisko;
 
-    public User() {
-    }
+
     public String getUsername() {
         return Username;
     }

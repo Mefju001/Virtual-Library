@@ -1,0 +1,5 @@
+
+b
+java:S1192"GDefine a constant instead of duplicating this literal "/Login" 3 times.(ÂÕ“Õüÿÿÿÿ
+f	java:S117-"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ƒâÌ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(×°˜£úÿÿÿÿ

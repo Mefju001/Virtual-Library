@@ -1,0 +1,15 @@
+
+`
+java:S11925"JDefine a constant instead of duplicating this literal "mainAdmin" 8 times.(úÓú€
+j
+java:S1192E"TDefine a constant instead of duplicating this literal "redirect:/MenuAdmin" 3 times.(‚Ì²
+f
+java:S1192Z"KDefine a constant instead of duplicating this literal "ROLE_ADMIN" 8 times.(çıè¬úÿÿÿÿ
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÿº¿ï
+h	java:S1009"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(½„Åıÿÿÿÿ
+h	java:S100P"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(èŒ¤øıÿÿÿÿ
+c	java:S100a"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜ÓœØ
+i	java:S100‚"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¾Ê•Šıÿÿÿÿ
+d	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ş¸’®
+d	java:S100Â"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ç˜¨¦
+d	java:S100É"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ç·à

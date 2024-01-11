@@ -27,7 +27,7 @@ public class LoginController {
         } else if (role.equals("ROLE_USER")) {
             return "redirect:/Menu";
         } else {
-            return "redirect:/odmowa_dostepu";
+                return "redirect:/odmowa_dostepu";
         }
     }
     @GetMapping("/odmowa_dostepu")

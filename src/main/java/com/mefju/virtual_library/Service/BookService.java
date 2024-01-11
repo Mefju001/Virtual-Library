@@ -38,14 +38,7 @@ public class BookService
     @Transactional
     public Optional<Book> FindByID(int id)
     {
-        Optional<Book> optionalBook = bookRepository.findById(id);
-
-        if (optionalBook.isPresent()) {
-            Book book = optionalBook.get();
-            return optionalBook;
-        } else {
-            return Optional.empty();
-        }
+        return bookRepository.findById(id);
     }
     @Transactional
     public void DeleteById(int id)

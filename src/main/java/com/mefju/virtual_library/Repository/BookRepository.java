@@ -25,7 +25,8 @@ public interface BookRepository extends JpaRepository<Book,Integer> {
     @Query(value = "SELECT * FROM book WHERE Cena between :min and :max ",nativeQuery = true)
     List<Book>findBooksByPrice(@Param("min") int min, @Param("max")int max);
 
-    @Query(value = "select * from book where ID_library =? ",nativeQuery = true)
+    @Query(value = "SELECT * FROM book WHERE ID_library LIKE %:id%", nativeQuery = true)
     List<Book> FindBooksByLibrary(String id);
+
 
 }

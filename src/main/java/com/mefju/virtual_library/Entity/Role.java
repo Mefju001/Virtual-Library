@@ -15,8 +15,6 @@ public class Role {
     private String rola;
 
 
-    public Role() {
-    }
 
     public String getID() {
         return ID;
