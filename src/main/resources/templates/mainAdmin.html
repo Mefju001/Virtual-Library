@@ -10,9 +10,9 @@
 <div class="container">
     <nav class="navbar">
         <div class="navbar-buttons">
-            <a><form  th:action="@{/szukanie}" method="post">
+            <a class="szukaj"><form  th:action="@{/szukanie}" method="post">
                 <label>
-                    <input class="extended-input" type="text" id="Nazwa_ksiazki" placeholder="Wpisz tytuł" name="name">
+                    <input class="extended-input" type="text" id="Nazwa_ksiazki" placeholder="Wpisz tytuł,imie i nazwisko albo wydawnictwo" name="name">
                 </label>
                 <br>
                 <button type="submit" class="link-button">Szukaj</button>
@@ -20,7 +20,7 @@
             </a>
             <a class="nav-button" th:href="@{/ShowFormForAdd}" >Dodaj ksiazke</a>
             <a class="nav-button" th:href="@{/Menu}"> Standardowe Menu</a>
-            <a class="nav-button" th:href="@{/Library}">Biblioteki</a>
+            <a class="nav-button" th:href="@{/LibraryAdmin}">Biblioteki</a>
             <a class="nav-button" th:href="@{/Listauzytkownikow}">Uzytkownicy</a>
 
             <div class="nav-button dropdown">Zalogowany jako: <span class="username" th:text="${username}"></span>
@@ -47,14 +47,17 @@
             <form th:action="@{/SzukaniePoCenie}" method="post">
                 <div class="search-input">
                     <label for="min">Minimalna cena:</label>
-                    <input class ="szukcena" type="number" id="min" name="min" placeholder="Wprowadź minimalną cenę">
+                    <input class ="szukcena" type="number" id="min" name="min" placeholder="Wprowadź minimalną cenę" min="0">
                 </div>
                 <div class="search-input">
                     <label for="max">Maksymalna cena:</label>
-                    <input class ="szukcena" type="number" id="max" name="max" placeholder="Wprowadź maksymalną cenę">
+                    <input class ="szukcena" type="number" id="max" name="max" placeholder="Wprowadź maksymalną cenę" min="0">
                 </div>
                 <div class="search-input">
                     <input type="submit" value="Szukaj">
+                </div>
+                <div>
+                    <p th:if="${message}" class="error-message" th:text="${message}"></p>
                 </div>
             </form>
             <ul class="menu-content">
@@ -62,11 +65,14 @@
                     <label for="submenu-toggle" class="submenu-button">Sortowanie</label>
                     <input type="checkbox" id="submenu-toggle" class="submenu-toggle">
                     <ul class="submenu-content">
-                        <li><a class = "tekst" th:href="@{/Sort}">Sortowanie rosnąco</a></li>
-                        <li><a class = "tekst" th:href="@{/Sortmal}">Sortowanie malejąco</a></li>
-                        <li><a class = "tekst" th:href="@{/popular}">Popularność</a></li>
+                        <li><a class = "tekst" th:href="@{/Sort}">Sortowanie ceny rosnąco</a></li>
+                        <li><a class = "tekst" th:href="@{/Sortmal}">Sortowanie ceny malejąco</a></li>
+                        <li><a class = "tekst" th:href="@{/SortNameASC}">Sortowanie nazwy rosnące</a></li>
+                        <li><a class = "tekst" th:href="@{/SortNameDESC}">Sortowanie nazwy malejąco</a></li>
                     </ul>
                 </li>
+                <li class="submenu"><a class = "anuluj" th:href="@{/popular}">Najbardziej popularne</a></li>
+                <li class="submenu"><a class = "anuluj" th:href="@{/Zapowiedzi}">Zapowiedzi</a></li>
                 <li class="submenu2">
                     <label for="submenu2-toggle" class="submenu2-button">Kategorie</label>
                     <input type="checkbox" id="submenu2-toggle" class="submenu2-toggle">
@@ -95,6 +101,7 @@
             </ul>
         </ul>
         <nav class="content">
+
             <div th:each="book:${Book}" class="book">
                 <img th:src="${book.getPicturePath()}" alt="Opis obrazka">
                 <h2>Tytuł: <span th:text="${book.getName()}"></span></h2>

@@ -28,6 +28,7 @@ public class VirtualLibraryAdminControllerTests {
     private BibliotekiService bibliotekiService;
     @MockBean
     private UserService userService;
+
     @Test
     public void testAdminPage() throws Exception {
         mockMvc.perform(get("/MenuAdmin").with(user("Admin").roles("ADMIN"))) // Wywołanie żądania GET
@@ -53,7 +54,6 @@ public class VirtualLibraryAdminControllerTests {
         mockMvc.perform(get("/Menu").with(user("basicUser").roles("USER")))
                 .andExpect(status().isOk());
     }
-
     @Test
     void testFormSubmission() throws Exception {
         mockMvc.perform(multipart("/save")
@@ -78,5 +78,4 @@ public class VirtualLibraryAdminControllerTests {
                 .andExpect(status().is3xxRedirection()) // Upewnij się, że przekierowanie jest wykonywane
                 .andExpect(redirectedUrl("/MenuAdmin")); // Sprawdź, czy kontroler przekazuje poprawny widok
     }
-
 }

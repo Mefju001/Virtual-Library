@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tabela bibliotek</title>
+    <link rel="stylesheet" href="/css/Tabela.css">
+</head>
+<body>
+<h1>Lista bibliotek</h1>
+<!-- Przyciski u góry tabeli -->
+<div class="button-container">
+    <button onclick="window.location.href='/ShowFormForBiblioteki'">Dodaj bibliotekę</button>
+    <button onclick="window.location.href='/ShowFormForMagazyn'">Dodaj ksiazki do danej biblioteki</button>
+    <button onclick="window.location.href='/MenuAdmin'">Powrót do menu</button>
+</div>
+
+<div class="container">
+    <table>
+        <thead>
+        <tr>
+            <th>Nazwa Biblioteki</th>
+            <th>Miejscowość</th>
+            <th>Pełen Adres</th>
+            <th>Mapa</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Iteracja przez listę bibliotek -->
+        <tr th:each="biblioteka : ${Biblioteki}">
+            <td th:text="${biblioteka.getId()}"></td>
+            <td th:text="${biblioteka.getLokalizacja()}"></td>
+            <td th:text="${biblioteka.getAdres()}"></td>
+            <td class="lokalizacja">
+                <iframe th:src="${biblioteka.getMapa()}"></iframe>
+            </td>
+            <td>
+                <form th:action="@{/ShowFormForUpdateBiblioteki}" method="get">
+                    <input type="hidden" name="id" th:value="${biblioteka.getId()}">
+                    <button type="submit" class="button">Edytuj</button>
+                </form>
+                <form th:action="@{/Deletebiblioteka}" method="get">
+                    <input type="hidden" name="id" th:value="${biblioteka.getId()}">
+                    <button type="submit" class="button">Usuń</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

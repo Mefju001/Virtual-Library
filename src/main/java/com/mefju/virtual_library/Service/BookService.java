@@ -25,17 +25,18 @@ public class BookService
     {
     bookRepository.save(book);
     }
-    @Transactional
     public List<Book>FindAll()
     {
         return bookRepository.findAll();
     }
-    @Transactional
+    public List<Book>Zapowiedzi()
+    {
+        return bookRepository.findBooksByDostepnoscIs("Nie");
+    }
     public List<String>TypeAll()
     {
         return bookRepository.Typeall();
     }
-    @Transactional
     public Optional<Book> FindByID(int id)
     {
         return bookRepository.findById(id);
@@ -45,37 +46,46 @@ public class BookService
     {
        bookRepository.deleteById(id);
     }
-    @Transactional
     public List<Book>FindBookByName(String name)
     {
         return bookRepository.findBooksByNameLike(name);
     }
-    @Transactional
+    public List<Book>FindBookByWydawca(String wydawca)
+    {
+        return bookRepository.findBooksByWydawcaLike(wydawca);
+    }
+    public List<Book>FindBookByAutor(String Autor)
+    {
+        return bookRepository.findBooksByAutorLike(Autor);
+    }
     public List<Book>FindBookByPrice(int min,int max)
     {
         return bookRepository.findBooksByPrice(min, max);
     }
-    @Transactional
     public List<Book>FindBookByType(String type)
     {
         return bookRepository.findBooksByTypeLike(type);
     }
-    @Transactional
     public List<Book>FindBookByLibrary(String Biblioteka)
     {
         return bookRepository.FindBooksByLibrary(Biblioteka);
     }
-    @Transactional
     public List<Book>SortPriceASC()
     {
         return bookRepository.SortPrice();
     }
-    @Transactional
     public List<Book>SortPriceDSC()
     {
         return bookRepository.SortPricemalejaco();
     }
-    @Transactional
+    public List<Book>SortNameASC()
+    {
+        return bookRepository.sortnameASC();
+    }
+    public List<Book>SortNameDESC()
+    {
+        return bookRepository.sortnameDESC();
+    }
     public List<Book>SortByPopular()
     {
         return bookRepository.popular();

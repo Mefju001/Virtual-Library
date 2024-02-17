@@ -14,6 +14,8 @@
 
     <label for="password">Hasło:</label>
     <input type="password" th:field="*{password}" id="password" name="password" required><br><br>
+    <label for="password2">Potwierdź hasło:</label>
+    <input type="password" id="password2" name="password2" required><br><br>
 
     <label for="imie">imie:</label>
     <input type="text" th:field="*{imie}"  id="imie" name="imie" required><br><br>
@@ -22,6 +24,9 @@
     <input type="text" th:field="*{nazwisko}"  id="nazwisko" name="nazwisko" required><br><br>
 
     <button type="submit">Zarejestruj</button>
+    <div>
+        <p th:if="${message}" class="error-message" th:text="${message}"></p>
+    </div>
 </form>
 </body>
 </html>

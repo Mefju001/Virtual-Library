@@ -1,9 +1,7 @@
 package com.mefju.virtual_library.Entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -13,16 +11,19 @@ public class User {
     @Column(name = "username",unique = true)
     private String Username;
     @Column(name = "password")
-    @NotNull()
+    @NotBlank
+    @NotNull
     private String Password;
     @Column(name = "enabled")
-    @NotNull()
+    @NotBlank
+    @NotNull
     private Boolean Enabled;
     @Column(name = "Imie")
-    @NotNull()
-    private String Imie;
+    @NotBlank
+    @NotNull    private String Imie;
     @Column(name = "Nazwisko")
-    @NotNull()
+    @NotBlank
+    @NotNull
     private String Nazwisko;
 
 

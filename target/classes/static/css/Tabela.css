@@ -8,6 +8,36 @@ body {
     flex-wrap: wrap;
     align-content: center;
 }
+.button-container {
+    margin-bottom: 20px; /* odstęp od tabeli */
+}
+
+.button-container button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    background-color: #007bff; /* kolor tła przycisku */
+    color: #fff; /* kolor tekstu */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button-container button:hover {
+    background-color: #0056b3; /* kolor tła przycisku po najechaniu kursorem */
+}
+.button:hover {
+    background-color: #810303;
+}
+.button {
+    font-size: 15px;
+    background-color: #4660d7;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+}
 h1 {
     text-align: center; /* Wyrównanie tekstu do środka */
     color: white; /* Kolor tekstu */
@@ -52,4 +82,26 @@ th {
     left: 0;
     /* border: none; */
     /* border-radius: 5px;*/
+}
+@media only screen and (max-width: 1300px) {
+    h1 {
+        font-size: 24px; /* zmniejszenie rozmiaru czcionki */
+    }
+
+    .container {
+        margin-top: 10px; /* zmniejszenie marginesu górnego */
+    }
+
+    table {
+        margin: 10px auto; /* zmniejszenie marginesu tabeli */
+    }
+
+    th, td {
+        padding: 8px; /* zmniejszenie paddingu w komórkach tabeli */
+    }
+
+    .lokalizacja iframe {
+        width: 100%; /* szerokość 100% dla responsywności */
+        height: auto; /* automatyczna wysokość dla responsywności */
+    }
 }

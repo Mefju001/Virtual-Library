@@ -1,6 +1,7 @@
 package com.mefju.virtual_library.Entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -8,10 +9,13 @@ import jakarta.validation.constraints.NotNull;
 public class Role {
     @Id
     @Column(name = "username",unique = true)
+    @NotBlank
+    @NotNull
     private String ID;
 
     @Column(name = "authority")
-    @NotNull()
+    @NotBlank
+    @NotNull
     private String rola;
 
 

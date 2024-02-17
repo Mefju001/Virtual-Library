@@ -1,7 +1,7 @@
 package com.mefju.virtual_library.Entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 
 @Entity
 @Table(name = "book")
@@ -11,42 +11,43 @@ public class Book {
     @Column(name= "id")
     private int id;
     @Column(name = "Nazwa")
-    @NotNull()
+    @NotBlank
+    @NotNull
     private String Name;
     @Column(name = "Rodzaj")
-    @NotNull()
+    @NotBlank
+    @NotNull
     private String Type;
     @Column(name = "Cena")
-    @NotNull()
+    @Positive
+    @NotNull
     private double Price;
     @Column(name = "Wydawca")
-    @NotNull()
+    @NotBlank
+    @NotNull
     private String Publisher;
     @Column(name = "Ocena")
-    @NotNull()
+    @Positive
+    @NotNull
     private int Rating;
     @Column(name = "Autor")
-    @NotNull()
+    @NotBlank
+    @NotNull
     private String Author;
     @Column(name = "Popularnosc")
-    @NotNull()
+    @Positive
+    @NotNull
     private int Popularnosc;
-    @Column(name = "Dostepnosc")
-    @NotNull()
+    @Column(name = "dostepnosc")
+    @NotBlank
+    @NotNull
     private String Dostepnosc;
     @Column(name = "Picturepath")
-    @NotNull()
+    @NotBlank
+    @NotNull
     private String PicturePath;
-    @Column(name = "ID_library")
-    @NotNull()
-    private String idlibrary;
 
-    public String getIdlibrary() {
-        return idlibrary;
-    }
-    public void setIdlibrary(String idlibrary) {
-        this.idlibrary = idlibrary;
-    }
+
 
     public int getId() {
         return id;
@@ -122,7 +123,6 @@ public class Book {
                 ", Popularnosc=" + Popularnosc +
                 ", Dostepnosc='" + Dostepnosc + '\'' +
                 ", PicturePath='" + PicturePath + '\'' +
-                ", idlibrary='" + idlibrary + '\'' +
                 '}';
     }
 }

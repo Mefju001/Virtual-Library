@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class RegistrationController {
@@ -27,12 +28,13 @@ public class RegistrationController {
     }
 
     @PostMapping("/register")
-    public String registerUser(@ModelAttribute("users") User users, Model theModel) {
+    public String registerUser(@ModelAttribute("users") User users, Model theModel, @RequestParam String password2) {
             if (userService.Exist(users)) {
                 theModel.addAttribute("message","ten użytkownik już istnieje");
                 return "registration-form";
             }
-            else {
+            else if(users.getPassword().equals(password2))
+            {
                 users.setEnabled(true);
                 users.setPassword("{noop}"+users.getPassword());
                 userService.AddUser(users);
@@ -41,6 +43,10 @@ public class RegistrationController {
                 authority.setRola("ROLE_USER");
                 userService.AddRole(authority);
                 return "redirect:/Login"; // przekierowanie po rejestracji
+            }
+            else {
+                theModel.addAttribute("message","Złe hasło");
+                return "registration-form";
             }
     }
 }

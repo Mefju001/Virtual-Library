@@ -10,9 +10,9 @@
 <div class="container">
     <nav class="navbar">
         <div class="navbar-buttons">
-            <a><form  th:action="@{/szukanie}" method="post">
+            <a class="szukaj"><form  th:action="@{/szukanie}" method="post">
                 <label>
-                    <input class="extended-input" type="text" id="Nazwa_ksiazki" placeholder="Wpisz tytuł" name="name">
+                    <input class="extended-input" type="text" id="Nazwa_ksiazki" placeholder="Wpisz tytuł,imie i nazwisko albo wydawnictwo" name="name">
                 </label>
                 <br>
                 <button type="submit" class="link-button">Szukaj</button>
@@ -52,17 +52,23 @@
                 <div class="search-input">
                     <input type="submit" value="Szukaj">
                 </div>
+                <div>
+                    <p th:if="${message}" class="error-message" th:text="${message}"></p>
+                </div>
             </form>
             <ul class="menu-content">
                 <li class="submenu">
                     <label for="submenu-toggle" class="submenu-button">Sortowanie</label>
                     <input type="checkbox" id="submenu-toggle" class="submenu-toggle">
                     <ul class="submenu-content">
-                        <li><a class = "tekst" th:href="@{/Sort}">Sortowanie rosnąco</a></li>
-                        <li><a class = "tekst" th:href="@{/Sortmal}">Sortowanie malejąco</a></li>
-                        <li><a class = "tekst" th:href="@{/popular}">Popularność</a></li>
+                        <li><a class = "tekst" th:href="@{/Sort}">Sortowanie ceny rosnąco</a></li>
+                        <li><a class = "tekst" th:href="@{/Sortmal}">Sortowanie ceny malejąco</a></li>
+                        <li><a class = "tekst" th:href="@{/SortNameASC}">Sortowanie nazwy rosnące</a></li>
+                        <li><a class = "tekst" th:href="@{/SortNameDESC}">Sortowanie nazwy malejąco</a></li>
                     </ul>
                 </li>
+                <li class="submenu"><a class = "anuluj" th:href="@{/popular}">Najbardziej popularne</a></li>
+                <li class="submenu"><a class = "anuluj" th:href="@{/Zapowiedzi}">Zapowiedzi</a></li>
                 <li class="submenu2">
                     <label for="submenu2-toggle" class="submenu2-button">Kategorie</label>
                     <input type="checkbox" id="submenu2-toggle" class="submenu2-toggle">
@@ -87,7 +93,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="submenu4"><a class = "anuluj" th:href="@{/MenuAdmin}">Anuluj sortowanie</a></li>
+                <li class="submenu4"><a class = "anuluj" th:href="@{/Menu}">Anuluj sortowanie</a></li>
             </ul>
         </ul>
         <nav class="content">

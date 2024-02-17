@@ -44,21 +44,19 @@ public class UserService {
     }
 
     @Transactional
-    public String changeUserPassword(String username, String oldPassword, String newPassword) {
+    public void changeUserPassword(String username, String oldPassword, String newPassword) {
         User user = userRepository.findByUsername(username);
         oldPassword = "{noop}"+oldPassword;
         if (user == null) {
-            return "Użytkownik nie istnieje";
+            return;
         }
 
         if (!user.getPassword().equals(oldPassword)) {
-            return "Stare hasło jest nieprawidłowe";
+            return;
         }
 
         user.setPassword("{noop}"+newPassword);
         userRepository.save(user);
-
-        return "success";
     }
 
     @Transactional

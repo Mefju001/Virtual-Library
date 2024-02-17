@@ -1,6 +1,7 @@
 package com.mefju.virtual_library.Entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -10,11 +11,14 @@ public class Biblioteki {
     @Column(name= "ID_Library",unique = true)
     private String id;
     @Column(name = "lokalizacja")
-    @NotNull()
+    @NotBlank
+    @NotNull
     private String lokalizacja;
     @Column(name = "Mapa")
     private String mapa;
     @Column(name = "Adres")
+    @NotBlank
+    @NotNull
     private String Adres;
 
 

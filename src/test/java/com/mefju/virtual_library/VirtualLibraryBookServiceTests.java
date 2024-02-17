@@ -1,7 +1,9 @@
 package com.mefju.virtual_library;
 
 import com.mefju.virtual_library.Entity.Book;
+import com.mefju.virtual_library.Entity.Magazyn;
 import com.mefju.virtual_library.Repository.BookRepository;
+import com.mefju.virtual_library.Service.BibliotekiService;
 import com.mefju.virtual_library.Service.BookService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +23,10 @@ class VirtualLibraryBookServiceTests {
     // Testy dla BookService
     @Autowired
     private BookService bookService;
-
     @Autowired
     private BookRepository bookRepository;
-
     @MockBean
     private BookService bookServiceMock;
-
     @Test
     void TestFindAllBooks()
     {
@@ -36,9 +35,16 @@ class VirtualLibraryBookServiceTests {
         assertNotNull(result);
     }
     @Test
+    void TestFindAll()
+    {
+        List<Book> result = bookRepository.FindBooksByLibrary("Biblioteka1");
+        System.out.println(result);
+        assertNotNull(result);
+    }
+    @Test
     void TestFindByID()
     {
-        Optional<Book> result = bookService.FindByID(1);
+        Optional<Book> result = bookRepository.findById(1);
         System.out.println(result);
         assertTrue(result.isPresent()); // Upewnij się, że wynik nie jest pusty
         assertEquals(1, result.get().getId()); // Sprawdź czy ID zwróconej książki to 1 (lub inne oczekiwane ID)

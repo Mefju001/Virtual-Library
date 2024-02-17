@@ -1,14 +1,10 @@
 package com.mefju.virtual_library.Controller;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.io.IOException;
 
 @Controller
 public class LoginController {
@@ -19,7 +15,7 @@ public class LoginController {
         return "Logowanie";
     }
     @RequestMapping("/redirect")
-    public String redirect(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String redirect() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String role = auth.getAuthorities().iterator().next().getAuthority();
         if (role.equals("ROLE_ADMIN")) {

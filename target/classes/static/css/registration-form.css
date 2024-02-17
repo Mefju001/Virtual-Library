@@ -52,3 +52,14 @@ input[type="password"]:focus {
     outline: none;
     border-color: #4CAF50;
 }
+.error-message
+{
+    color: #810303;
+}
+@media screen and (max-width: 600px) {
+    form {
+        width: 90%;
+    }
+}
+
+

@@ -45,20 +45,9 @@
             </div>
             <div class="wiersz">
                 <label for="Popularnosc">Sprzedawalnosc</label>
-                <input name="popularnosc" th:field="*{popularnosc}" type="number" placeholder="Sprzedane" id="popularnosc" min="1" max="1000000" step="1" required>
-            </div>
-            <div class="wiersz">
-                <label>Dostepnosc
-                    <select name="Dostepnosc " th:field="*{idlibrary}" multiple>
-                        <option value="Biblioteka1">Biblioteka w Katowicach</option>
-                        <option value="Biblioteka2">Biblioteka w Sosnowcu</option>
-                        <option value="Biblioteka3">Biblioteka w Gliwicach</option>
-                        <option value="Biblioteka4">Biblioteka w Żorach</option>
-                    </select>
-                </label>
+                <input name="Popularnosc" th:field="*{popularnosc}" type="number" placeholder="Sprzedane" id="Popularnosc" min="0" max="1000000" step="1" required>
             </div>
             <button id="confirm-but"> Potwierdz</button>
         </form>
     </div>
 </body>
-</html>

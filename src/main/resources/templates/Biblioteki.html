@@ -1,11 +1,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Wycentrowana tabela</title>
+    <title>Tabela bibliotek</title>
     <link rel="stylesheet" href="/css/Tabela.css">
 </head>
 <body>
     <h1>Lista bibliotek</h1>
+    <div class="button-container">
+        <button onclick="window.location.href='/Menu'">Powrót do menu</button>
+    </div>
     <div class="container">
         <table>
             <thead>
@@ -17,13 +20,11 @@
             </tr>
             </thead>
             <tbody>
-            <!-- Użyj th:each bezpośrednio w tagu tr, aby iterować po obiektach 'Biblioteki' -->
             <tr th:each="biblioteka : ${Biblioteki}">
                 <td th:text="${biblioteka.getId()}"></td>
                 <td th:text="${biblioteka.getLokalizacja()}"></td>
                 <td th:text="${biblioteka.getAdres()}"></td>
                 <td class="lokalizacja">
-                    <!-- Umieść tylko <iframe> bez dodatkowego <div>, jeśli mapa jest prawidłowa -->
                     <iframe th:src="${biblioteka.getMapa()}"></iframe>
                 </td>
             </tr>
