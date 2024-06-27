@@ -194,7 +194,6 @@ public class AdminController {
         }
         return "main";
     }
-
     @GetMapping("/popular")
     public String popular(Model themodel, Authentication authentication) {
         List<Book> books = bookService.SortByPopular();
@@ -205,19 +204,12 @@ public class AdminController {
         }
         return "main";
     }
-
     @GetMapping("/changepasswordform")
     public String showchangepasswordform() {
         return "ChangePassword";
     }
-
     @PostMapping("/changepassword")
-    public String changePassword(@RequestParam("oldPassword") String oldPassword,
-                                 @RequestParam("newPassword") String newPassword,
-                                 @RequestParam("newPassword2") String newPassword2,
-                                 Principal principal,
-                                 Authentication authentication) {
-
+    public String changePassword(@RequestParam("oldPassword") String oldPassword,@RequestParam("newPassword") String newPassword,@RequestParam("newPassword2") String newPassword2,Principal principal,Authentication authentication) {
         String username = principal.getName();
         if(Objects.equals(newPassword, newPassword2)) {
             userService.changeUserPassword(username, oldPassword, newPassword);
@@ -232,20 +224,18 @@ public class AdminController {
             return "ChangePassword";
         }
     }
-        @GetMapping("/DeleteUser")
-        public String DeleteUser (Principal principal)
-        {
-            String username = principal.getName();
-            userService.deleteUser(username);
-            return "redirect:/Login";
-        }
-        @GetMapping("/Listauzytkownikow")
-        public String Listauzytkownikow (Model themodel)
-        {
-            List<User> users = userService.ListUsers();
-            themodel.addAttribute("users", users);
-            return "Uzytkownicy";
-        }
+    @GetMapping("/DeleteUser")
+    public String DeleteUser (Principal principal) {
+        String username = principal.getName();
+        userService.deleteUser(username);
+        return "redirect:/Login";
+    }
+    @GetMapping("/Listauzytkownikow")
+    public String Listauzytkownikow (Model themodel) {
+        List<User> users = userService.ListUsers();
+        themodel.addAttribute("users", users);
+        return "Uzytkownicy";
+    }
     @GetMapping("/ShowFormForMagazyn")
     public String ShowFormForAddforbook() {
         return "dodajksiazkemagazyn";
@@ -271,8 +261,7 @@ public class AdminController {
         }
     }
     @GetMapping("/LibraryAdmin")
-    public String showLibrary(Model themodel)
-    {
+    public String showLibrary(Model themodel) {
         List<Biblioteki>bibliotekis=bibliotekiService.FindAll();
         themodel.addAttribute("Biblioteki",bibliotekis);
         return "BibliotekiAdmin";
@@ -295,7 +284,6 @@ public class AdminController {
         theModel.addAttribute("Biblioteka", biblioteki);
         return "dodajbiblioteke";
     }
-
     @GetMapping("/Deletebiblioteka")
     public String Delete(@RequestParam("id") String id) {
         bibliotekiService.delete(id);
