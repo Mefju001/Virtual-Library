@@ -1,2 +1,2 @@
 # Virtual-Library
-As the name says, there will be a virtual library for books
+A virtual library that allows you to add, edit or sort books, as well as an overview of available books in selected libraries.
